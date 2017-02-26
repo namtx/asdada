@@ -1,0 +1,20 @@
+<div class="row">
+  <aside class="col-md-3 categories-list">
+    <div id="main-menu">
+      <div class="list-group panel">
+        <% @categories.each do |category| %>
+          <%= link_to "##{"category_"<<category.id.to_s}", {:class => "list-group-item list-group-item-success",
+            "data-parent" => "#main-menu", "data-toggle" =>"collapse"} do %>
+            <%= category.name %>
+            <%= content_tag :i, "", :class => "fa fa-caret-down" %>
+          <% end %>
+          <%= content_tag :div, "", {:class => "collapse",:id => ("category_"<<category.id.to_s)} do%>
+            <% category.sub_categories.each do |sub_category| %>
+              <%= link_to sub_category.name, "javascript:;", {:class => "list-group-item"} %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </aside>
+</div>

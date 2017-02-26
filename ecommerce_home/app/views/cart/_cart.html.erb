@@ -1,0 +1,50 @@
+<!-- <div class="row product-in-cart">
+  <div class="col-md-2">
+      <img class="img-responsive" src="https://images.unsplash.com/photo-1470350576089-539d5a852bf7?dpr=1&auto=format&fit=crop&w=1500&h=1001&q=80&cs=tinysrgb&crop=" alt="">
+  </div>
+  <div class="col-md-5">
+    <p><%= product.name %></p>
+  </div>
+  <div class="col-md-2">
+    <p><%= product.price %></p>
+  </div>
+  <div class="col-md-2">
+    <input type="number" min="1" step="1" max="50" />
+  </div>
+  <div class="col-md-1 remove">
+    <a href="#" class="btn-remove-product"><span>&times;</span></a>
+  </div>
+</div> -->
+<tr class="product-in-cart">
+  <td class="w15">
+    <img class="img-responsive" src="https://images.unsplash.com/photo-1470350576089-539d5a852bf7?dpr=1&auto=format&fit=crop&w=1500&h=1001&q=80&cs=tinysrgb&crop=" alt="">
+  </td>
+  <td class="w45">
+    <p><%= product.name %></p>
+  </td>
+  <td class="w15">
+    <p><%= product.price %></p>
+  </td>
+  <td class="w20 quantity">
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <div class="input-group number-spinner">
+          <span class="input-group-btn">
+            <button class="btn btn-default" data-dir="down">
+              <span class="glyphicon glyphicon-minus"></span>
+            </button>
+          </span>
+          <input type="text" class="form-control text-center only-number" value="1">
+          <span class="input-group-btn">
+  					<button class="btn btn-success" data-dir="up">
+              <span class="glyphicon glyphicon-plus"></span>
+            </button>
+  				</span>
+        </div>
+      </div>
+    </div>
+  </td>
+  <td class="remove">
+    <a href="#" class="btn-remove-product"><span class="text-danger">&times;</span></a>
+  </td>
+</tr>
