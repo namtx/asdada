@@ -1,0 +1,14 @@
+<tr class="product-in-cart">
+  <td class="w15">
+    <img class="img-responsive" src="https://goo.gl/b4znAS" alt="">
+  </td>
+  <td class="w45">
+    <p><%= product.name %></p>
+  </td>
+  <td class="w15">
+    <p><%= product.price %></p>
+  </td>
+  <td class="w20 rating">
+    <%= render partial: "shared/rating", locals: {product: product} %>
+  </td>
+</tr>

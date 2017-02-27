@@ -1,0 +1,17 @@
+<div class="rate">
+  <%= radio_button_tag "#{product.id}_rate", "5", @rating && @rating.point == 5,
+    {:id => "#{product.id}_star5"} %>
+  <label for="star5" title="text"></label>
+  <%= radio_button_tag "#{product.id}_rate", "4", @rating && @rating.point == 4,
+    {:id => "#{product.id}_star4"} %>
+  <label for="star4" title="text"></label>
+  <%= radio_button_tag "#{product.id}_rate", "3", @rating && @rating.point == 3,
+    {:id => "#{product.id}_star3"} %>
+  <label for="star3" title="text"></label>
+  <%= radio_button_tag "#{product.id}_rate", "2", @rating && @rating.point == 2,
+    {:id => "#{product.id}_star2"} %>
+  <label for="star2" title="text"></label>
+  <%= radio_button_tag "#{product.id}_rate", "1", @rating && @rating.point == 1,
+    {:id => "#{product.id}_star1"} %>
+  <label for="#{product.id}_star1" title="text"></label>
+</div>

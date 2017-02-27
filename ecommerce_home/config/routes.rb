@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root "static_pages#home"
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
+  get "/signup", to: "users#new"
   get "/carts", to: "carts#index"
   resources :users
   resources :products

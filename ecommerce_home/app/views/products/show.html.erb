@@ -6,7 +6,7 @@
     <div class="col-md-6">
       <h2><%= @product.name %></h2>
       <div class="row">
-          <%= render "rating" %>
+          <%= render partial: "shared/rating", locals: {product: @product} %>
       </div>
       <p class="ratings"><%= @rate_count %> reviews</p>
       <p class="description"><%= @product.description %></p>

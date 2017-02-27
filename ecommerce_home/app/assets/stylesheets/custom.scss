@@ -8,11 +8,75 @@
   box-sizing: border-box;
 }
 
-/* header */
+/* universal */
 
 body {
-  padding-top: 80px;
+  padding-top: 60px;
+  position: relative;
+  min-height: 1200px;
 }
+
+footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: left;
+  background-color: #efefef;
+  height: 2em;
+  li {
+    list-style: none;
+    display: inline;
+    font-size: 1em;
+    padding-right: 20px;
+    line-height: 2em;
+  }
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+  h1 {
+    margin-bottom: 10px;
+  }
+}
+
+/* typography */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: $gray-light;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+/* header */
+
 .header-cart {
   position: absolute;
   text-align: center;
@@ -30,6 +94,13 @@ body {
     color: white;
     border-radius: 50%;
     padding: 6px;
+  }
+}
+
+.center {
+  text-align: center;
+  h1 {
+    margin-bottom: 10px;
   }
 }
 
@@ -174,4 +245,39 @@ aside.categories-list{
 }
 .list-group-submenu {
   margin-left:20px;
+}
+
+input[type=file] {
+  border: none;
+}
+
+/* users */
+
+.full-width-button {
+  width: 100%;
+  text-transform: uppercase;
+}
+
+table.recenty-viewed {
+  border-collapse: collapse;
+  th {
+    border-bottom: 0px !important;
+  }
+  td {
+    border: 0 !important;
+  }
+  .w45 {
+    width: 45%;
+  }
+  .w20 {
+    width: 20%;
+  }
+  .w15 {
+    width: 15%;
+  }
+  .rating {
+    label {
+      font-size: 22px;
+    }
+  }
 }
