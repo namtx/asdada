@@ -281,3 +281,63 @@ table.recenty-viewed {
     }
   }
 }
+
+/*  home */
+
+.multi-item-carousel {
+  .carousel-inner {
+    .item {
+      transition: 500ms ease-in-out left;
+    }
+    .active {
+      &.left{
+        left:-33%;
+      }
+      &.right {
+        left:33%;
+      }
+    }
+    .next {
+      left: 33%;
+    }
+    .prev {
+      left: -33%;
+    }
+    @media all and (transform-3d), (-webkit-transform-3d) {
+      .item {
+        transition: 500ms ease-in-out left;
+        transition: 500ms ease-in-out all;
+        backface-visibility: visible;
+        transform: none!important;
+      }
+    }
+  }
+  .carouse-control {
+    &.left, &.right {
+      background-image: none;
+    }
+  }
+}
+
+/* filter bar */
+.filter-bar {
+  margin-top: 16px;
+  width: 100%;
+  background-color: orange;
+  .filter-title {
+    padding-left: 20px;
+    h2 {
+      margin: 0;
+      text-align: left;
+    }
+  }
+  .filter-form {
+    padding-right: 10px;
+    span{
+      float: left;
+    }
+    select {
+      float: right;
+    }
+  }
+}

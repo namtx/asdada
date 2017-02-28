@@ -42,6 +42,7 @@ sub_categories.each do |sub_category|
     Product.create!(sub_category: sub_category,
       classification: classifications.first,
       name: "#{sub_category.name}_#{i}",price: 1000, quantity: 100,
+      image: open("public/uploads/user/profile_image/24/photo-1453365607868-7deed8cc7d26.jpg"),
       description: Faker::Lorem.sentence(3, false, 4))
   end
 end
