@@ -1,6 +1,7 @@
 10.times do |i|
   User.create!(user_name:"user_#{i}", email: Faker::Internet.email,
-  password: "123456", password_confirmation: "123456", is_admin: false)
+  password: "123456", password_confirmation: "123456", is_admin: false,
+  profile_image: open("public/uploads/user/profile_image/24/photo-1453365607868-7deed8cc7d26.jpg"))
 end
 
 Category.create!(name: "Electronics",

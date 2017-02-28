@@ -77,26 +77,6 @@ p {
 
 /* header */
 
-.header-cart {
-  position: absolute;
-  text-align: center;
-  .svg-button-cart {
-    background-image: image-url("shopping-cart.svg");
-    height: 25px;
-    width: 25px;
-    display: inline-block;
-  }
-  span.cart-count {
-    position: relative;
-    top: -17px;
-    left: -13px;
-    background-color: orange;
-    color: white;
-    border-radius: 50%;
-    padding: 6px;
-  }
-}
-
 .center {
   text-align: center;
   h1 {
@@ -113,6 +93,7 @@ p {
   letter-spacing: -1px;
   padding-top: 15px;
   font-weight: bold;
+  vertical-align: middle;
   &:hover {
     color: white;
     text-decoration: none;
@@ -319,25 +300,84 @@ table.recenty-viewed {
   }
 }
 
+/* hot trends */
+
+.hot-trends {
+  h1 {
+    padding-left: 0px;
+    text-align: left;
+  }
+}
+
+/* new products */
+
+.new-product {
+  h1 {
+    padding-left: 0px;
+    text-align: left;
+  }
+}
 /* filter bar */
+
 .filter-bar {
   margin-top: 16px;
   width: 100%;
-  background-color: orange;
+  display: table;
   .filter-title {
+    display: table-cell;
     padding-left: 20px;
     h2 {
       margin: 0;
       text-align: left;
     }
   }
+
   .filter-form {
+    display: table-cell;
     padding-right: 10px;
-    span{
-      float: left;
-    }
+    vertical-align: bottom;;
+    padding-right: 0px;
+    clear: both;
     select {
-      float: right;
+      width: 60%;
+      display: inline-block;
     }
+    label {
+      width: 20%;
+      display: inline-block;
+    }
+  }
+}
+
+.badge {
+  background-color: orange;
+}
+
+.card {
+  @include box-sizing;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 1px solid transparent;
+  &:hover{
+    border: 1px solid #e3e3e3;
+  }
+  &:hover .btn{
+    border: 1px solid #e3e3e3;
+    opacity: 1;
+    transition: ease-in 0.5;
+    &:hover {
+      border: 1px solid #f37022;
+      background-color: white;
+      color: #f37022;
+    }
+  }
+  .btn {
+    border-radius: 0;
+    background-color: #f37022;
+    color: white;
+    margin-bottom: 10px;
+    opacity: 0;
   }
 }
