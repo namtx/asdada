@@ -61,4 +61,25 @@ $(function(){
     autoplay: true,
     autoplaySpeed: 2000
   });
+
+  $('#price-slider').slider({});
+
+  $('.product-rate').raty({
+    path: '/assets',
+    starOff: 'star-off.png',
+    starOn: 'star-on.png',
+    readOnly: true,
+    score: function(){
+      return $(this).attr('data-score');
+    }
+  });
+
+  $('.user-rate-product').raty({
+    path: '/assets',
+    starOff: 'star-off.png',
+    starOn: 'star-on.png',
+    score: function(){
+      return $(this).attr('data-score');
+    }
+  });
 });

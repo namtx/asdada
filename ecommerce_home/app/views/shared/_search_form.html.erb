@@ -1,42 +1,27 @@
-<div class="container ">
-  <div class="row">
-    <aside class="col-md-4">
-      <div class="row">
-        <h5>REFINE BY CATEGORY</h5>
-        <ul>
-          <li>Mobiles (1023)</li>
-          <li>Tablets (100)</li>
-          <li>Lading phones (1000)</li>
-          <li>Modems (1000)</li>
-        </ul>
-      </div>
-      <div class="row">
-        <h5>REFINE BY CLASSIFICATION</h5>
-        <ul>
-          <li>Mobiles (1023)</li>
-          <li>Tablets (100)</li>
-          <li>Lading phones (1000)</li>
-          <li>Modems (1000)</li>
-        </ul>
-      </div>
-    </aside>
-    <div class="col-md-8">
-      <div class="row filter-bar">
-        <div class="filter-title">
-          <h2>Filter title</h2>
-          <p>102 items found</p>
-        </div>
-        <div class="filter-form">
-          <label for="">Sort by:</label>
-          <select class="form-control" name="">
-            <option value="">Options 1</option>
-            <option value="">Options 2</option>
-            <option value="">Options 3</option>
-            <option value="">Options 4</option>
-          </select>
-        </div>
-        <div class="clearfix"></div>
-      </div>
-    </div>
+<%= form_tag products_path, method: :get do %>
+  <div><%= t "search.category" %><%= select_tag "sub_category",
+    grouped_options_for_select(group_category_select),class: "select form-control",
+    include_blank: "All" %>
   </div>
-</div>
+  <div><%= t "rating" %><%= select_tag "rate",
+    options_for_select(rate_select),class: "select form-control",
+    include_blank: "All" %>
+  </div>
+  <div class="price-slider">
+    <label for="">Price</label>
+    <label>€ 10</label>
+    <div class="slider-wrapper">
+      <!-- <input id="price-slider" type="text" data-slider-min="0" ]
+        data-slider-max="10000" data-slider-step="100" data-slider-value="[0,1000]"
+        data-slider-orientation="vertical"/> -->
+      <%= text_field_tag "price", "", id: "price-slider", type: "text", "data-slider-min": "0",
+        "data-slider-max": "10000", "data-slider-step": "100",
+        "data-slider-value": "[0,1000]",
+        "data-slider-orientation": "vertical"%>
+    </div>
+    <label>€ 1000</label>
+  </div>
+  <button type="submit" class="btn btn-primary full-width-button">
+    search
+  </button>
+<% end %>

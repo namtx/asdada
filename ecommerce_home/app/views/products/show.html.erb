@@ -1,16 +1,15 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <img class="img-responsive" src="https://images.unsplash.com/photo-1470350576089-539d5a852bf7?dpr=1&auto=format&fit=crop&w=1500&h=1001&q=80&cs=tinysrgb&crop=" alt="">
+      <%= image_tag @product.image.url, alt: "product image", class: "img-responsive" %>
     </div>
     <div class="col-md-6">
       <h2><%= @product.name %></h2>
-      <div class="row">
-          <%= render partial: "shared/rating", locals: {product: @product} %>
+      <div class="row user-rate-product">
       </div>
-      <p class="ratings"><%= @rate_count %> reviews</p>
+      <i><%= pluralize(@product.rate_count, "reviews") %></i>
       <p class="description"><%= @product.description %></p>
-      <h3 class="price"><%= @product.price %></h3>
+      <h3 class="price"><%= number_to_currency @product.price %></h3>
       <a href="#" class="btn btn-primary">Add to cart</a>
     </div>
   </div>

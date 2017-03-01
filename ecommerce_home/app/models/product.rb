@@ -14,4 +14,42 @@ class Product < ApplicationRecord
   validates :quantity, presence: true, numericality: {only_integer: true}
   validates :sub_category_id, presence: true
   validates :classification_id, presence: true
+
+  scope :by_sub_category, ->sub_category_id do
+    where sub_category_id: sub_category_id if sub_category_id.present?
+  end
+
+  scope :by_name, ->name do
+    where "name LIKE '%#{name}%'" if name.present?
+  end
+
+  scope :by_min_price, ->min do
+    where "price >= #{min}" if min.present?
+  end
+
+  scope :by_max_price, ->max do
+    where "price <= #{max}" if max.present?
+  end
+
+  scope :top_order_products, -> {left_outer_joins(:order_details)
+    .uniq
+    .group("products.id")
+    .order("count(order_details.id) desc")}
+
+  scope :top_new_products, -> {order "created_at desc"}
+
+  def average_rate
+    ((ratings.to_a.sum {|item| item.point}).to_f/ratings.count).
+      round(2)
+  end
+
+  def rate_count
+    ratings.count
+  end
+
+  def is_number? str
+    str =~ /\A\d+\z/ ? true : false
+  end
+
+
 end

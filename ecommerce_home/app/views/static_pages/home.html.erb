@@ -9,7 +9,5 @@
 
 <div class="container new-product">
   <h1>New products</h1>
-  <% Product.all.take(10).each do |new_product| %>
-    <%= render new_product %>
-  <% end %>
+  <%= render @new_products %>
 </div>

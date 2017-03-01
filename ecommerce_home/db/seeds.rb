@@ -53,7 +53,7 @@ end
     content: Faker::Lorem.sentence(3, false, 4))
 end
 10.times do |i|
-  Rating.create!(user: User.find(2), product: Product.first, point: i)
+  Rating.create!(user: User.find(2), product: Product.first, point: 5)
 end
 
 3.times do |i|

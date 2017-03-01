@@ -1,3 +1,14 @@
 <div class = "row product-list">
-  <%= render @products %>
+  <hr>
+  <aside class="col-md-2">
+    <%= render "shared/search_form" %>
+  </aside>
+  <div class="col-md-10">
+    <% if @products.any? %>
+      <%= render @products %>
+      <%= will_paginate %>
+    <% else %>
+      <p class="text-info">There is no product matches your search.</p>
+    <% end %>
+  </div>
 </div>
