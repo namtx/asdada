@@ -40,6 +40,7 @@ gem "bootstrap-sass", "~> 3.3.6"
 gem "font-awesome-rails"
 gem "will_paginate", "3.1.0"
 gem "bootstrap-will_paginate", "0.0.10"
+gem "pry"
 # Use Capistrano for deployment
 # gem "capistrano-rails", group: :development
 

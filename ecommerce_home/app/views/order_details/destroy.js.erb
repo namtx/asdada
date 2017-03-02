@@ -1,0 +1,2 @@
+$('.render-page').html('<%= escape_javascript(render "carts/show_cart") %>')
+$('.badge').html('<%= @order.order_details.size %>')

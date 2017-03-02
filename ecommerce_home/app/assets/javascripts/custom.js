@@ -82,4 +82,14 @@ $(function(){
       return $(this).attr('data-score');
     }
   });
+
+  $('.recently-viewed-rating').raty({
+    path: '/assets',
+    starOff: 'star-off.png',
+    starOn: 'star-on.png',
+    score: function(){
+      return $(this).attr('data-score');
+    },
+    readOnly: true
+  });
 });

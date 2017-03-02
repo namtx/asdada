@@ -13,7 +13,7 @@
     </section>
   </aside>
   <div class="col-md-8">
-    <h2><%= t "recently.title" %></h2>
+    <h2><%= "Recently viewed products" %></h2>
     <table class="table recenty-viewed">
       <thead>
         <tr>
@@ -24,11 +24,10 @@
         </tr>
       </thead>
       <tbody>
-        <% @products.each do |product| %>
+        <% @recently_viewed_products.each do |product| %>
           <%= render partial: "recently_viewed", locals: {product: product} %>
         <% end %>
       </tbody>
     </table>
-    <%= will_paginate @products %>
   </div>
 </div>

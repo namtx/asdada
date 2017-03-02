@@ -17,9 +17,38 @@ class User < ApplicationRecord
 
   before_save {email.downcase!}
 
+  scope :order_by_name, -> {order "user_name"}
+
   def self.digest string
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
       BCrypt::Engine.cost
     BCrypt::Password.create string, cost: cost
+  end
+
+  def self.new_token
+    SecureRandom.urlsafe_base64
+  end
+
+  def remember
+    self.remember_token = User.new_token
+    update_attribute :remember_digest, User.digest(remember_token)
+  end
+
+  def forget
+    update_attribute :remember_digest, nil
+  end
+
+  def authenticated? attribute, token
+    digest = send("#{attribute}_digest")
+    if digest.nil?
+      false
+    else
+      BCrypt::Password.new(digest).is_password? token
+    end
+  end
+
+  private
+  def downcase_email
+    self.email = email.downcase
   end
 end

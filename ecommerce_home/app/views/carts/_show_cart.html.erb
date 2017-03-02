@@ -14,8 +14,8 @@
         </tr>
       </thead>
       <tbody>
-        <% @products.each do |product| %>
-          <%= render partial: "cart", locals: {product: product}%>
+        <% @order_details.each do |order_detail| %>
+          <%= render partial: "carts/cart", locals: {product: order_detail.product, order_detail: order_detail} %>
         <% end %>
       </tbody>
     </table>

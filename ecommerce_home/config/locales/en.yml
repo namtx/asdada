@@ -1,7 +1,29 @@
 en:
   hello: "Hello world"
+  project_name: "Ecommerce23"
+
+  header:
+    products: "Products"
+    login: "Login"
+    home: "Home"
+    logout: "Log out"
+    settings: "Settings"
+    profile: "Profile"
+    app_name: "Ecommerce23"
+    account: "Account"
+    cart: "Cart"
+  footer:
+    help: "Help"
+    about: "About"
   login:
-    title: "Log in"
+    login: "Login"
+    remember_me: "Remember me"
+    forgot_password: "(forgot password)"
+    new_user: "New user?"
+    title: "Login"
+    signup: "Sign up now"
+  home:
+    title: "Home"
   signup:
     title: "Sign up"
     password_confirmation: "Confirmation"
@@ -10,3 +32,30 @@ en:
     title: "Edit profile"
     password_confirmation: "Confirmation"
     save_changes: "Save changes"
+    profile_image: "Profile image"
+  alt:
+    profile_image: "profile image"
+    product_image: "product image"
+  recently:
+    product: "Product"
+    description: "Description"
+    price: "Price"
+    rating: "Rating"
+    title: "Recently viewed products"
+  show:
+    edit_profile: "Edit Profile"
+  show_product:
+    add_to_cart: "Add to cart"
+    reviews: "reviews"
+    price: "Price"
+    buy_now: "buy now"
+  error:
+    product_not_found: "Product is not found."
+  search_form:
+    search: "Search"
+    all: "All"
+    price: "Price"
+    category: "Category"
+    rating: "Rating"
+  index_product:
+    not_found: "There is no product matches your search."
