@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   get "/signup", to: "users#new"
   get "/carts", to: "carts#index"
   resources :users
-  resources :products
+  resources :products do
+    resources :ratings
+  end
   resources :cart, only: :index
   resources :categories
   resources :order_details

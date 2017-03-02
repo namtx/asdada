@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <%= render "layouts/meta_tag" %>
     <title>Ecommerce Home</title>
     <%= csrf_meta_tags %>
 
@@ -10,6 +11,7 @@
   </head>
 
   <body>
+    <%= render "layouts/facebook_comment" %>
     <%= render "layouts/header" %>
     <div class="container render-page">
       <% flash.each do |message_type, message| %>

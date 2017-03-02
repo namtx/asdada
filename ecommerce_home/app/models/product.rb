@@ -31,7 +31,8 @@ class Product < ApplicationRecord
     where "price <= #{max}" if max.present?
   end
 
-  scope :top_order_products, -> {left_outer_joins(:order_details)
+  scope :top_order_products, -> {
+    left_outer_joins(:order_details)
     .uniq
     .group("products.id")
     .order("count(order_details.id) desc")}
@@ -43,6 +44,11 @@ class Product < ApplicationRecord
       round(2)
   end
 
+  def get_rating_by_user user
+    rating = ratings.find_by user: user
+    rating.present? ? rating.point : nil
+  end
+
   def rate_count
     ratings.count
   end
@@ -50,6 +56,5 @@ class Product < ApplicationRecord
   def is_number? str
     str =~ /\A\d+\z/ ? true : false
   end
-
 
 end

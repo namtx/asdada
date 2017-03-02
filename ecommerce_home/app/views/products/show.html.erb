@@ -1,3 +1,8 @@
+<% provide :og_url, "http://www.notes.minamidev.com" %>
+<% provide :og_type, "article" %>
+<% provide :og_title, @product.name %>
+<% provide :og_description, @product.description %>
+<% provide :og_image, "http://www.levihackwith.com/wp-content/uploads/2013/03/ruby.png" %>
 <div class="container">
   <div class="row">
     <div class="col-md-6">
@@ -5,13 +10,23 @@
     </div>
     <div class="col-md-6">
       <h2><%= @product.name %></h2>
-      <div class="row user-rate-product">
+      <div class="row user-rate-product" product-id="<%= @product.id %>" data-score="<%= @product.average_rate %>">
       </div>
-      <i><%= pluralize(@product.rate_count, "reviews") %></i>
+      <i><%= pluralize(@product.rate_count, "review") %></i>
       <p class="description"><%= @product.description %></p>
       <h3 class="price"><%= number_to_currency @product.price %></h3>
       <a href="#" class="btn btn-primary">Add to cart</a>
+      <div class="fb-comments" data-href="http://localhost:3000/products/10" data-numposts="5"></div>
     </div>
   </div>
 </div>
-<%= recently_viewed_products %>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=219785741821521";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="fb-share-button" data-href="http://localhost:3000" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A3000%2F&amp;src=sdkpreparse">Share</a></div>

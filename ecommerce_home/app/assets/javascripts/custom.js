@@ -1,4 +1,4 @@
-$(function(){
+$(document).on('turbolinks:load', function(){
   $('.number-spinner .btn').on('click', function(){
     var oldVal = $(this).closest('.number-spinner').find('input').val().trim();
     var newVal = 0;
@@ -80,7 +80,23 @@ $(function(){
     starOn: 'star-on.png',
     score: function(){
       return $(this).attr('data-score');
-    }
+    },
+    click: function(score, event){
+      product_id = $('.user-rate-product').attr('product-id');
+      $.ajax({
+        method: 'post',
+        url: product_id+'/ratings',
+        data: {
+          rating: {
+            point: score
+          }
+        },
+        success: function(){
+          $('.user-rate-product').raty('score', score);
+        }
+      });
+      return false;
+    },
   });
 
   $('.recently-viewed-rating').raty({
@@ -92,4 +108,14 @@ $(function(){
     },
     readOnly: true
   });
+
+  function loadFacebookComment(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=213223815761488";
+    fjs.parentNode.insertBefore(js, fjs);
+  };
+
+  loadFacebookComment(document, 'script', 'facebook-jssdk');
 });
