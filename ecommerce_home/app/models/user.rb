@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  attr_accessor :remember_token
   has_many :comments, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_many :suggested_products, dependent: :destroy

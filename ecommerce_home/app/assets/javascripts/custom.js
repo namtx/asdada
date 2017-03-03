@@ -11,7 +11,21 @@ $(document).on('turbolinks:load', function(){
         newVal = 1;
       }
     }
-    $(this).closest('.number-spinner').find('input').val(newVal);
+    order_detail_id = $(this).attr('order-detail');
+    product_id = $(this).attr('product');
+    $.ajax({
+      method: 'put',
+      url: 'order_details/'+order_detail_id,
+      data: {
+        order_detail: {
+          product_id: product_id,
+          quantity: newVal
+        }
+      },
+      success: function(){
+        $(this).closest('.number-spinner').find('input').val(newVal);
+      }
+    });
   });
 
   $('input.only-number').on('keyup', function(event){
