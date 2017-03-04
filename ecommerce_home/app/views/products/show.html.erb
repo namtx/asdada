@@ -15,7 +15,7 @@
       <i><%= pluralize(@product.rate_count, "review") %></i>
       <p class="description"><%= @product.description %></p>
       <h3 class="price"><%= number_to_currency @product.price %></h3>
-      <a href="#" class="btn btn-primary">Add to cart</a>
+      <a href="#" class="btn btn-primary btn-add-to-cart" product="<%= @product.id %>">Add to cart</a>
       <div class="fb-comments" data-href="http://localhost:3000/products/10" data-numposts="5"></div>
     </div>
   </div>

@@ -1,39 +1,11 @@
 $(document).on('turbolinks:load', function(){
-  $('.number-spinner .btn').on('click', function(){
-    var oldVal = $(this).closest('.number-spinner').find('input').val().trim();
-    var newVal = 0;
-    if($(this).attr('data-dir')=='up'){
-      newVal = parseInt(oldVal)+1;
-    }else{
-      if(oldVal > 1){
-        newVal = parseInt(oldVal) - 1;
-      }else {
-        newVal = 1;
-      }
-    }
-    order_detail_id = $(this).attr('order-detail');
-    product_id = $(this).attr('product');
-    $.ajax({
-      method: 'put',
-      url: 'order_details/'+order_detail_id,
-      data: {
-        order_detail: {
-          product_id: product_id,
-          quantity: newVal
-        }
-      },
-      success: function(){
-        $(this).closest('.number-spinner').find('input').val(newVal);
-      }
-    });
-  });
-
   $('input.only-number').on('keyup', function(event){
     if(isNaN($(this).val())){
       $(this).val(1)
     }
   });
 
+  $(document).on('click', '')
   function readURL(input) {
     if (input.files && input.files[0]) {
       var reader = new FileReader();
@@ -132,4 +104,58 @@ $(document).on('turbolinks:load', function(){
   };
 
   loadFacebookComment(document, 'script', 'facebook-jssdk');
+});
+
+$(document).on('click', '.number-spinner .btn', {}, function(e){
+  currentVal = $(e.currentTarget).parent().parent().find('input').val();
+  if($(e.currentTarget).attr('data-dir')=='up'){
+    newVal = 1
+  }else{
+    if (currentVal === '1'){
+      return false;
+    }
+    newVal = -1
+  }
+  product_id = $(e.currentTarget).attr('product');
+  $.ajax({
+    method: 'post',
+    url: 'carts/',
+    data: {
+      product_id: product_id,
+      quantity: newVal
+    }
+  });
+  return false;
+});
+
+$(document).on('click', 'a.btn-remove-product', {}, function(e){
+  product_id = $(e.currentTarget).attr('product');
+  $.ajax({
+    method: 'delete',
+    url: '/carts',
+    data: {
+      product_id: product_id
+    },
+  });
+  return false;
+});
+
+$(document).on('click', 'a.btn-add-to-cart', {}, function(e){
+  product_id = $(e.currentTarget).attr('product');
+  $.ajax({
+    method: 'post',
+    url: '/carts',
+    data: {
+      product_id: product_id,
+      quantity: 1
+    },
+    beforeSend: function(){
+      $('#fakeLoader').fakeLoader({
+        timeToHide: 30,
+        spinner: 'spinner7',
+        bgColor: 'rgba(0, 0, 0, 0.5)'
+      });
+    }
+  });
+  return false;
 });

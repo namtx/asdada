@@ -7,11 +7,13 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   get "/signup", to: "users#new"
   get "/carts", to: "carts#index"
+  post "/carts", to: "carts#create"
+  put "/carts", to: "carts#update"
+  delete "/carts", to: "carts#destroy"
   resources :users
   resources :products do
     resources :ratings
   end
   resources :cart, only: :index
   resources :categories
-  resources :order_details
 end

@@ -8,7 +8,7 @@
         <% if logged_in? %>
           <li>
             <%= link_to carts_path, class: "header-cart" do %>
-              <%= t("header.cart") %></i><span class="badge"><%= current_order.order_details.size %> </span>
+              <%= t("header.cart") %></i><%= content_tag :span, current_cart.size, class: "badge" %>
             <% end %>
           </li>
           <li class="dropdown">

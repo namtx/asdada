@@ -1,0 +1,3 @@
+$('.badge').html('<%= current_cart.size %>')
+$('.total').html('<%= number_to_currency(current_cart.total) %>')
+$('tbody').html('<%=j render partial: "cart_table", locals: {products: @current_cart.products} %>')

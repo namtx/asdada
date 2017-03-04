@@ -11,7 +11,6 @@ class ProductsController < ApplicationController
       end
     end
     @products = @products.paginate page: params[:page], per_page: 12
-    @order_detail = current_order.order_details.new
   end
 
   def show

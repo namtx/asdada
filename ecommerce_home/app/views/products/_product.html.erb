@@ -1,5 +1,5 @@
 <div class="card col-sm-6 col-md-3">
-  <%= form_for @order_detail, remote: true do |f| %>
+  <%= form_tag '/carts', remote: true do |f| %>
     <%= link_to image_tag(product.image.url, alt: "product image",
       class: "full-width-image"), product %>
       <h4><b><%= product.name %></b></h4>
@@ -8,8 +8,8 @@
       </div>
       <span>( <%= pluralize product.rate_count, "reviews" %> )</span>
       <p class="product-price">PRICE: <%= number_to_currency product.price %></p>
-      <%= f.hidden_field :product_id, value: product.id %>
-      <%= f.hidden_field :quantity, value: 1 %>
-      <%= f.submit "BUY NOW", class: "btn full-width-button" %>
+      <%= hidden_field_tag :product_id, product.id %>
+      <%= hidden_field_tag :quantity, 1 %>
+      <%= submit_tag "BUY NOW", class: "btn full-width-button" %>
   <% end %>
 </div>

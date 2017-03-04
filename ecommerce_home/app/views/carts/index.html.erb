@@ -1,3 +1,33 @@
-<div class="shoping-cart">
-  <%= render "show_cart"%>
+<h2>My shopping cart</h2>
+<div class="row">
+  <div class="col-md-8">
+    <table class="table cart-table">
+      <thead>
+        <tr>
+          <th>
+            <h4>4 Products</h3>
+          </th>
+          <th></th>
+          <th>ITEM PRICE</th>
+          <th>QUANTITY</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: "cart_table", locals: {products: current_cart.products}%>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-4 order-summary">
+    <h4>Order summary</h3>
+    <hr>
+    <p>Total <span>(Total payment amount)</span>
+      <span class="pull-right total">
+        <%= number_to_currency current_cart.total %>
+      </span>
+    </p>
+    <div class="row">
+      <a href="#" class="btn btn-primary btn-checkout">Proceed to checkout</a>
+    </div>
+  </div>
 </div>
