@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170302011240) do
+ActiveRecord::Schema.define(version: 20170305055843) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -60,8 +60,9 @@ ActiveRecord::Schema.define(version: 20170302011240) do
     t.string   "address"
     t.string   "full_name"
     t.string   "phone"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "confirmation_digest"
     t.index ["order_status_id"], name: "index_orders_on_order_status_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end

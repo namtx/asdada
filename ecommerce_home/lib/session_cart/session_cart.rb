@@ -31,4 +31,8 @@ class SessionCart
   def total
     session[:current_cart].sum {|product_id, quantity| Product.find_by(id: product_id.to_i).price * quantity.to_i}
   end
+
+  def destroy
+    session[:current_cart] = nil
+  end
 end

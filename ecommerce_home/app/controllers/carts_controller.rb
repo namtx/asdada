@@ -11,6 +11,7 @@ class CartsController < ApplicationController
   end
 
   def index
+    @order = Order.new
   end
 
   private

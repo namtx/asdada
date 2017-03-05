@@ -27,7 +27,11 @@
       </span>
     </p>
     <div class="row">
-      <a href="#" class="btn btn-primary btn-checkout">Proceed to checkout</a>
+      <%= form_for @order do |f| %>
+        <%= f.hidden_field :address, value: "asdadadda" %>
+        <%= f.hidden_field :order_status_id, value: 1 %>
+        <%= f.submit "Proceed to checkout", class: "btn btn-primary btn-checkout" %>
+      <% end %>
     </div>
   </div>
 </div>

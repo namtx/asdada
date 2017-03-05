@@ -18,4 +18,6 @@ Rails.application.routes.draw do
   end
   resources :cart, only: :index
   resources :categories
+  resources :orders
+  resources :order_confirmations, only: [:edit]
 end
