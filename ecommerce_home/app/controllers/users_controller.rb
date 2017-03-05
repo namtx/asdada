@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :load_user, only: [:show]
+  before_action :load_user, only: [:show, :update]
   before_action :correct_user, only: [:edit, :update, :show]
   def index
     @users = User.order_by_name.paginate page: params[:id],
@@ -28,6 +28,13 @@ class UsersController < ApplicationController
   end
 
   def update
+    if @user.update_attributes user_params
+      flash[:success] = "Successfully changed"
+      redirect_to @user
+    else
+      flash[:danger] = "Something went wrong"
+      render :edit
+    end
   end
 
   private

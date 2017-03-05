@@ -1,0 +1,36 @@
+<%= form_for [current_user, @suggested_product], html: { multipart: true } do |f| %>
+  <%= render "shared/error_messages", object: f.object%>
+  <div class="col-md-5 col-md-offset-2">
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :content %>
+      <%= f.text_area :content, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :price %>
+      <div class="input-group">
+        <span class="input-group-addon"><%= number_to_currency 1, format: "%u" %></span>
+        <%= f.number_field :price, class: "form-control", min: 0, max: 10000000, step: 1000 %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-5">
+    <div class="form-group">
+      <%= f.label :image %>
+      <%= f.file_field :image, id: "image-upload" %>
+      <% if @suggested_product.image.present? %>
+        <%= image_tag @suggested_product.image.url, alt: "logo", class: "img-responsive", id: "current-profile-image"%>
+      <% end %>
+      <%= image_tag "#", {size: "300x300", alt: "suggested product image",
+        class: "img-thumbnail hidden", id: "img_prev"} %>
+    </div>
+  </div>
+  <div class="col-md-5 col-md-offset-2">
+    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+  </div>
+<% end %>

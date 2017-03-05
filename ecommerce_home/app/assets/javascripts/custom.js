@@ -5,6 +5,7 @@ $(document).on('turbolinks:load', function(){
     }
   });
 
+
   $(document).on('click', '')
   function readURL(input) {
     if (input.files && input.files[0]) {
@@ -19,6 +20,7 @@ $(document).on('turbolinks:load', function(){
 
   $('#image-upload').change(function(){
     $('#img_prev').removeClass('hidden');
+    $('#current-profile-image').addClass('hidden');
     readURL(this);
   });
 
@@ -104,7 +106,19 @@ $(document).on('turbolinks:load', function(){
   };
 
   loadFacebookComment(document, 'script', 'facebook-jssdk');
+
+  function selectedTab(){
+    url = window.location.href
+    console.log(url.split('?tab=')[1]);
+    if (url.split('?tab=')[1] === 'suggested_product_tab'){
+      $('a[href="#suggested_product_tab"]').tab('show');
+    }
+  }
+
+  selectedTab();
 });
+
+
 
 $(document).on('click', '.number-spinner .btn', {}, function(e){
   currentVal = $(e.currentTarget).parent().parent().find('input').val();

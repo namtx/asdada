@@ -18,6 +18,7 @@
             <ul class="dropdown-menu">
               <li><%= link_to t("header_page.profile"), user_path(current_user) %></li>
               <li><%= link_to t("header_page.settings"), edit_user_path(current_user) %></li>
+              <li><%= link_to "Suggest product", new_user_suggested_product_path(current_user) %></li>
               <li class="divider"></li>
               <li><%= link_to t("header_page.logout"), logout_path,
                 method: :delete %></li>

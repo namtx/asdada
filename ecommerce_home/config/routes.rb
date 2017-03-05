@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   post "/carts", to: "carts#create"
   put "/carts", to: "carts#update"
   delete "/carts", to: "carts#destroy"
-  resources :users
+  resources :users do
+    resources :suggested_products
+  end
   resources :products do
     resources :ratings
   end

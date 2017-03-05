@@ -22,9 +22,12 @@
 
   <div class="form-group">
     <%= f.label :profile_image, "Profile image" %>
-    <%= f.file_field :profile_image, id: "image-upload"%>
-    <%= image_tag "#", {:size =>"300x300", :alt => "profile image",
-      :class => "img-thumbnail hidden", :id => "img_prev"} %>
+    <%= f.file_field :profile_image, id: "image-upload" %>
+    <% if @user.profile_image.present? %>
+      <%= image_tag @user.profile_image.url, alt: "logo", class: "img-responsive", id: "current-profile-image"%>
+    <% end %>
+    <%= image_tag "#", {size: "300x300", alt: "profile image",
+      class: "img-thumbnail hidden", id: "img_prev"} %>
   </div>
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>

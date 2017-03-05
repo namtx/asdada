@@ -7,27 +7,51 @@
         <%= @user.user_name %>
       </h1>
       <p  class="text-center text-info"><%= @user.email %></p>
-      <a href="#" class="btn btn-success full-width-button">
-        <%= t "user.edit_profile" %>
-      </a>
+      <%= link_to "edit profile", edit_user_path, class: "btn btn-success full-width-button" %>
     </section>
   </aside>
   <div class="col-md-8">
-    <h2><%= "Recently viewed products" %></h2>
-    <table class="table recenty-viewed">
-      <thead>
-        <tr>
-          <th><%= t "recently.product" %></th>
-          <th><%= t "recently.description" %></th>
-          <th><%= t "recently.price" %></th>
-          <th><%= t "recently.rating" %></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @recently_viewed_products.each do |product| %>
-          <%= render partial: "recently_viewed", locals: {product: product} %>
-        <% end %>
-      </tbody>
-    </table>
+    <ul class="nav nav-tabs nav-justified" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#home_tab" role="tab">Recently viewed products</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#suggested_product_tab" role="tab">Suggested products</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="home_tab" role="tabpanel">
+        <table class="table recenty-viewed">
+          <thead>
+            <tr>
+              <th><%= t "recently.product" %></th>
+              <th><%= t "recently.description" %></th>
+              <th><%= t "recently.price" %></th>
+              <th><%= t "recently.rating" %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @recently_viewed_products.each do |product| %>
+              <%= render partial: "recently_viewed", locals: {product: product} %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="tab-pane" id="suggested_product_tab" role="tabpanel">
+        <table class="table recenty-viewed">
+          <thead>
+            <tr>
+              <th><%= t "recently.product" %></th>
+              <th><%= t "recently.description" %></th>
+              <th><%= t "recently.price" %></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= render current_user.suggested_products %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>

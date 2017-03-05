@@ -396,3 +396,18 @@ table.recenty-viewed {
 .slick-slide img {
   display: inline !important;
 }
+
+.field_with_error {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
+}
+
+#error_explaination {
+  color: #a94442;
+  ul {
+    color: #a94442;
+    margin: 0 0 30px 0;
+  }
+}
