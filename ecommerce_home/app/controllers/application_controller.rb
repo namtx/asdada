@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include ProductsHelper
   include CartsHelper
-  
+
   private
   def logged_in_user
     unless logged_in?
@@ -19,6 +19,6 @@ class ApplicationController < ActionController::Base
   end
 
   def admin_user
-    redirect_to root_path unless current_user.admin?
+    redirect_to root_path unless current_user.is_admin?
   end
 end

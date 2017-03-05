@@ -1,6 +1,6 @@
 class SuggestedProductsController < ApplicationController
   before_action :load_suggested_product, only: [:destroy, :edit, :update]
-
+  before_action :logged_in_user
   def new
     @suggested_product = current_user.suggested_products.new
   end

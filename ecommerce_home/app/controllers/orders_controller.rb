@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-
+  before_action :logged_in_user
   def create
     @order = current_user.orders.build order_params
     ActiveRecord::Base.transaction do
@@ -13,6 +13,10 @@ class OrdersController < ApplicationController
         flash_slq_error @order
       end
     end
+  end
+
+  def show
+    
   end
 
   private

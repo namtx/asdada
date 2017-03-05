@@ -14,7 +14,7 @@ class Product < ApplicationRecord
   validates :quantity, presence: true, numericality: {only_integer: true}
   validates :sub_category_id, presence: true
   validates :classification_id, presence: true
-
+  validates :image, presence: true
   scope :by_sub_category, ->sub_category_id do
     where sub_category_id: sub_category_id if sub_category_id.present?
   end
@@ -38,6 +38,14 @@ class Product < ApplicationRecord
     .order("count(order_details.id) desc")}
 
   scope :top_new_products, -> {order "created_at desc"}
+
+  def self.import file
+    CSV.foreach(file.path, headers: true) do |row|
+      product = Product.new row.to_h
+      product.image = open("public/uploads/user/profile_image/24/#{row.to_h["image"]}")
+      product.save!
+    end
+  end
 
   def average_rate
     ((ratings.to_a.sum {|item| item.point}).to_f/ratings.count).

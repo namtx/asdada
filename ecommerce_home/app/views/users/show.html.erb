@@ -18,6 +18,9 @@
       <li class="nav-item">
         <a class="nav-link active" data-toggle="tab" href="#suggested_product_tab" role="tab">Suggested products</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#orders_tab" role="tab">Orders</a>
+      </li>
     </ul>
     <div class="tab-content">
       <div class="tab-pane active" id="home_tab" role="tabpanel">
@@ -49,6 +52,21 @@
           </thead>
           <tbody>
             <%= render current_user.suggested_products %>
+          </tbody>
+        </table>
+      </div>
+      <div class="tab-pane" id="orders_tab" role="tabpanel">
+        <table class="table recenty-viewed">
+          <thead>
+            <tr>
+              <th></th>
+              <th><%= "Products" %></th>
+              <th><%= "total" %></th>
+              <th><%= "status" %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= render @orders %>
           </tbody>
         </table>
       </div>

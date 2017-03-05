@@ -13,6 +13,14 @@ class Order < ApplicationRecord
 
   before_create :create_confirmation_digest
 
+  def order_details_count
+    order_details.size
+  end
+
+  def total
+    order_details.to_a.reduce(0) {|sum, item| sum + item.price*item.quantity}
+  end
+
   def self.digest string
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
       BCrypt::Engine.cost

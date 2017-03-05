@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   delete "/carts", to: "carts#destroy"
   resources :users do
     resources :suggested_products
+    resources :orders, only: [:show]
   end
   resources :products do
     resources :ratings
@@ -20,4 +21,9 @@ Rails.application.routes.draw do
   resources :categories
   resources :orders
   resources :order_confirmations, only: [:edit]
+  namespace :admin do
+    resources :products do
+      collection {post :import}
+    end
+  end
 end

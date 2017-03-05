@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  
   def index
     price_str = params[:price]
     @max_price = price_str.split(",").last if price_str.present?

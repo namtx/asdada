@@ -1,0 +1,9 @@
+<%= form_tag import_admin_products_path, multipart: true, class: "form-group" do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
+<% @products.each do |product| %>
+  <p>
+    <%= product.name %>
+  </p>
+<% end %>

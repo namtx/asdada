@@ -1,6 +1,8 @@
 class CartsController < ApplicationController
   before_action :update_session_cart, only: [:create, :update]
   before_action :destroy_session_cart, only: [:destroy]
+  before_action :logged_in_user
+
   def create
   end
 

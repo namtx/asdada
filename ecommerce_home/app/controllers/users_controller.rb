@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :load_user, only: [:show, :update]
   before_action :correct_user, only: [:edit, :update, :show]
+  before_action :logged_in_user
+
   def index
     @users = User.order_by_name.paginate page: params[:id],
       per_page: 15
@@ -22,6 +24,7 @@ class UsersController < ApplicationController
   end
   def show
     @recently_viewed_products = recently_viewed_products.reverse
+    @orders = current_user.orders
   end
 
   def edit
