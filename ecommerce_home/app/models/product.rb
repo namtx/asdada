@@ -49,7 +49,7 @@ class Product < ApplicationRecord
 
   def average_rate
     ((ratings.to_a.sum {|item| item.point}).to_f/ratings.count).
-      round(2)
+      round((Settings.average_rate_round))
   end
 
   def get_rating_by_user user

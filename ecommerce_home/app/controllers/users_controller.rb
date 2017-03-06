@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :load_user, only: [:show, :update]
   before_action :correct_user, only: [:edit, :update, :show]
-  before_action :logged_in_user
+  before_action :logged_in_user, except: [:new, :create]
 
   def index
     @users = User.order_by_name.paginate page: params[:id],

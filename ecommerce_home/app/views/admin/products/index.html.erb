@@ -1,9 +1,15 @@
-<%= form_tag import_admin_products_path, multipart: true, class: "form-group" do %>
-  <%= file_field_tag :file %>
-  <%= submit_tag "Import" %>
-<% end %>
-<% @products.each do |product| %>
-  <p>
-    <%= product.name %>
-  </p>
-<% end %>
+<div class = "row product-list">
+  <hr>
+  <aside class="col-md-2">
+    <%= render "search_form" %>
+  </aside>
+  <div class="col-md-10">
+    <% if @products.any? %>
+      <%= render @products %>
+      <%= will_paginate %>
+    <% else %>
+      <p class="text-info">There is no product matches your search.</p>
+    <% end %>
+  </div>
+</div>
+<%= render "upload" %>

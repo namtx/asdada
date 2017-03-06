@@ -1,4 +1,4 @@
-<%= form_tag products_path, method: :get do %>
+<%= form_tag admin_products_path, method: :get do %>
   <div>
     <%= t "search.name" %><%= text_field_tag "name", nil, class: "form-control" %>
   </div>
@@ -24,4 +24,7 @@
   <button type="submit" class="btn btn-primary full-width-button">
     search
   </button>
+  <div class="upload-section">
+    <a class="text-danger" data-toggle="modal" data-target="#upload-modal">Upload more product form csv file</a>
+  </div>
 <% end %>

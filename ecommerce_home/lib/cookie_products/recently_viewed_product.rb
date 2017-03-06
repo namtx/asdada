@@ -6,10 +6,12 @@ class RecentlyViewedProduct < CookieCollection
   end
 
   def push product
-    delete product
-    while length > Settings.recently_viewed.size - 1
-      delete_at 0
+    if product.present?
+      delete product
+      while length > Settings.recently_viewed.size - 1
+        delete_at 0
+      end
+      super product
     end
-    super product
   end
 end

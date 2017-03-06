@@ -1,10 +1,10 @@
 class ProductsController < ApplicationController
-  
+
   def index
     price_str = params[:price]
     @max_price = price_str.split(",").last if price_str.present?
     @min_price = price_str.split(",").first if price_str.present?
-    @products = Product.by_sub_category(params[:sub_category])
+    @products = Product.by_sub_category(params[:sub_category]).by_name(params[:name])
     .by_min_price(@min_price).by_max_price(@max_price)
     if params[:rate].present?
       @products = @products.select do |product|

@@ -386,6 +386,12 @@ table.recenty-viewed {
     margin-bottom: 10px;
     opacity: 0;
   }
+  .inline-btn {
+    width: 35%;
+    &:first-child {
+      float: left;
+    }
+  }
 }
 
 /* show product */
@@ -410,4 +416,8 @@ table.recenty-viewed {
     color: #a94442;
     margin: 0 0 30px 0;
   }
+}
+
+.upload-section {
+  margin-top: 50%;
 }

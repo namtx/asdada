@@ -5,7 +5,6 @@ $(document).on('turbolinks:load', function(){
     }
   });
 
-
   $(document).on('click', '')
   function readURL(input) {
     if (input.files && input.files[0]) {
@@ -50,8 +49,10 @@ $(document).on('turbolinks:load', function(){
     autoplaySpeed: 2000
   });
 
+  $('.slider-vertical').remove();
   $('#price-slider').slider({});
 
+  $('.product-rate').empty();
   $('.product-rate').raty({
     path: '/assets',
     starOff: 'star-off.png',
@@ -88,6 +89,16 @@ $(document).on('turbolinks:load', function(){
   });
 
   $('.recently-viewed-rating').raty({
+    path: '/assets',
+    starOff: 'star-off.png',
+    starOn: 'star-on.png',
+    score: function(){
+      return $(this).attr('data-score');
+    },
+    readOnly: true
+  });
+
+  $('.admin-rate-product').raty({
     path: '/assets',
     starOff: 'star-off.png',
     starOn: 'star-on.png',
