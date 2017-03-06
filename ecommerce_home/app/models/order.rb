@@ -13,6 +13,10 @@ class Order < ApplicationRecord
 
   before_create :create_confirmation_digest
 
+  scope :by_status_id, ->status_id do
+    where "order_status_id = #{status_id}" if status_id.present?
+  end
+  
   def order_details_count
     order_details.size
   end

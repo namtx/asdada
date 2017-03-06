@@ -20,6 +20,10 @@ class User < ApplicationRecord
 
   scope :order_by_name, -> {order "user_name"}
 
+  scope :by_name_email, ->keyword do
+    where "user_name LIKE '%#{keyword}%' OR email LIKE '%#{keyword}%'" if keyword.present?
+  end
+
   def self.digest string
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
       BCrypt::Engine.cost

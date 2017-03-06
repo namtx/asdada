@@ -127,7 +127,7 @@ input {
 
 /* cart */
 
-table.cart-table {
+table.ecommerce-table {
   border-collapse: collapse;
   th {
     border-bottom: 0px !important;
@@ -144,9 +144,12 @@ table.cart-table {
   .w15 {
     width: 15%;
   }
+  .w25 {
+    width: 25%;
+  }
 }
 
-.product-in-cart {
+.product-in-cart, .user-row {
   position: relative;
   border-bottom: 15px solid white;
   margin-bottom: 10px;
@@ -157,6 +160,7 @@ table.cart-table {
     color: #888;
   }
 }
+
 .order-summary {
   padding-left: 30px;
   .btn-checkout {
@@ -420,4 +424,22 @@ table.recenty-viewed {
 
 .upload-section {
   margin-top: 50%;
+}
+
+.search-box {
+  display: flex;
+
+  .search-query, select {
+    margin-bottom: 0px;
+    margin-right: 1%;
+  }
+}
+.no-user-info {
+  margin-top: 10%;
+  margin-right: 7%;
+  margin-left: 7%;
+}
+.user-table {
+  margin-right: 7%;
+  margin-left: 7%;
 }

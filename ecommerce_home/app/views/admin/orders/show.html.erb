@@ -1,0 +1,48 @@
+<h2>Order #<%= @order.id %></h2>
+<div class="row">
+  <div class="col-md-8">
+    <% if @order.order_details.any? %>
+      <table class="table ecommerce-table">
+        <thead>
+          <tr>
+            <th>
+              <h4><%= pluralize @order.order_details_count, "product" %></h4>
+            </th>
+            <th></th>
+            <th>ITEM PRICE</th>
+            <th>QUANTITY</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order.order_details.each do |order_detail| %>
+            <%= render partial: "detail", locals: {order_detail: order_detail} %>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <div class="col-md-8 col-md-offset-2">
+        <div class="alert alert-danger no-user-info">
+          <p class="text-center">There is no user there</p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-4 order-summary">
+    <h4>Order summary</h3>
+    <hr>
+    <p>Total <span>(Total payment amount)</span>
+      <span class="pull-right total">
+        <%= number_to_currency @order.total %>
+      </span>
+    </p>
+    <% if @order.order_status_id == 2 %>
+      <div class="row">
+        <%= form_tag admin_order_path(@order), method: :put do |f| %>
+          <%= hidden_field_tag :status_id, value: 3 %>
+          <%= submit_tag "Ship", class: "btn btn-success btn-checkout" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
