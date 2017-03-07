@@ -1,0 +1,3 @@
+<%= column_chart OrderDetail.product_order_chart_data %>
+
+<%= line_chart OrderDetail.group_by_day(:created_at).count %>

@@ -399,13 +399,16 @@ table.recenty-viewed {
 }
 
 /* show product */
-.user-rate-product {
+
+.user-rate-product,{
   padding-left: 15px;
 }
 
 .slick-slide img {
   display: inline !important;
 }
+
+/* form */
 
 .field_with_error {
   @extend .has-error;
