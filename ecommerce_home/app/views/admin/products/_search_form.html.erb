@@ -1,30 +1,36 @@
 <%= form_tag admin_products_path, method: :get do %>
   <div>
-    <%= t "search.name" %><%= text_field_tag "name", nil, class: "form-control" %>
+    <%= t "search_form.name" %><%= text_field_tag "name", nil,
+      class: "form-control" %>
   </div>
-  <div><%= t "search.category" %><%= select_tag "sub_category",
-    grouped_options_for_select(group_category_select),class: "select form-control",
-    include_blank: "All" %>
+  <div><%= t "search_form.category" %><%= select_tag "sub_category",
+    grouped_options_for_select(group_category_select),
+    class: "select form-control",
+    include_blank: t("select.select_all") %>
   </div>
-  <div><%= t "rating" %><%= select_tag "rate",
+  <div><%= t "search_form.rating" %><%= select_tag "rate",
     options_for_select(rate_select), class: "select form-control",
-    include_blank: "All" %>
+    include_blank: t("select.select_all") %>
   </div>
   <div class="price-slider">
-    <label for="">Price</label>
-    <label>€ 10</label>
+    <label><%= t("search_form.price") %></label>
+    <label><%= number_to_currency Settings.search_form.min_price %></label>
     <div class="slider-wrapper">
-      <%= text_field_tag "price", "", id: "price-slider", type: "text", "data-slider-min": "0",
-        "data-slider-max": "10000", "data-slider-step": "100",
-        "data-slider-value": "[0,1000]",
+      <%= text_field_tag "price", "", id: "price-slider", type: "text",
+        "data-slider-min": Settings.search_form.min_price,
+        "data-slider-max": Settings.search_form.max_price,
+        "data-slider-step": Settings.search_form.slider_step,
+        "data-slider-value": Settings.search_form.slider_value,
         "data-slider-orientation": "vertical"%>
     </div>
-    <label>€ 1000</label>
+    <label><%= number_to_currency Settings.search_form.max_price %></label>
   </div>
   <button type="submit" class="btn btn-primary full-width-button">
-    search
+    <%= t "button.search" %>
   </button>
   <div class="upload-section">
-    <a class="text-danger" data-toggle="modal" data-target="#upload-modal">Upload more product form csv file</a>
+    <a class="text-danger" data-toggle="modal" data-target="#upload-modal">
+      <%= t "upload_csv" %>
+    </a>
   </div>
 <% end %>

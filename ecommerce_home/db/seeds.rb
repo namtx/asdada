@@ -4,6 +4,10 @@
   profile_image: open("public/uploads/user/profile_image/24/photo-1453365607868-7deed8cc7d26.jpg"))
 end
 
+User.create!(user_name:"admin", email: "admin@framgia.com",
+  password: "123456", password_confirmation: "123456", is_admin: true,
+  profile_image: open("public/uploads/user/profile_image/24/photo-1453365607868-7deed8cc7d26.jpg"))
+
 Category.create!(name: "Electronics",
   description: Faker::Lorem.sentence(3, false, 4))
 Category.create!(name: "Women's Fashion",
@@ -24,54 +28,43 @@ SubCategory.create!(name: "Computers & Laptops", category: Category.find(1),
 SubCategory.create!(name: "Cameras", category: Category.find(1),
   description: Faker::Lorem.sentence(5,false,4))
 
-4.times do |i|
-  Classification.create(name: "Classification_#{i}",
-    description: Faker::Lorem.sentence(3, false, 4))
-end
-classifications = Classification.all
-categories = Category.all
-categories.each do |category|
-  SubCategory.create!(name: "sub_#{category.name}",category: category ,
-    description: Faker::Lorem.sentence(3, false, 4))
-end
+SubCategory.create!(name: "Skirts", category: Category.find(2),
+  description: Faker::Lorem.sentence(5,false,4))
+SubCategory.create!(name: "Pants", category: Category.find(2),
+  description: Faker::Lorem.sentence(5,false,4))
+SubCategory.create!(name: "Shorts", category: Category.find(2),
+  description: Faker::Lorem.sentence(5,false,4))
+SubCategory.create!(name: "Swimwear", category: Category.find(2),
+  description: Faker::Lorem.sentence(5,false,4))
 
-sub_categories = SubCategory.all
+SubCategory.create!(name: "Life Skills Toys", category: Category.find(6),
+  description: Faker::Lorem.sentence(5,false,4))
+SubCategory.create!(name: "Tunnels", category: Category.find(6),
+  description: Faker::Lorem.sentence(5,false,4))
+SubCategory.create!(name: "Outdoor Play", category: Category.find(6),
+  description: Faker::Lorem.sentence(5,false,4))
+SubCategory.create!(name: " Ironing Boards", category: Category.find(6),
+  description: Faker::Lorem.sentence(5,false,4))
 
-sub_categories.each do |sub_category|
+Classification.create(name: "Normal",
+  description: Faker::Lorem.sentence(3, false, 4))
+Classification.create(name: "Loyal",
+  description: Faker::Lorem.sentence(3, false, 4))
+Classification.create(name: "Medium",
+  description: Faker::Lorem.sentence(3, false, 4))
+Classification.create(name: "Expensive",
+  description: Faker::Lorem.sentence(3, false, 4))
+Classification.create(name: "Cheap",
+  description: Faker::Lorem.sentence(3, false, 4))
 
-  10.times do |i|
-    Product.create!(sub_category: sub_category,
-      classification: classifications.first,
-      name: "#{sub_category.name}_#{i}",price: 1000, quantity: 100,
-      image: open("public/uploads/user/profile_image/24/photo-1453365607868-7deed8cc7d26.jpg"),
-      description: Faker::Lorem.sentence(3, false, 4))
-  end
-end
 
-10.times do |i|
-  Comment.create(user: User.first, product: Product.find(2),
-    content: Faker::Lorem.sentence(3, false, 4))
-end
-10.times do |i|
-  Rating.create!(user: User.find(2), product: Product.first, point: 5)
-end
+OrderStatus.create!(name: "Pending",
+  description: Faker::Lorem.sentence(3, false, 4))
+OrderStatus.create!(name: "Confirmed",
+  description: Faker::Lorem.sentence(3, false, 4))
+OrderStatus.create!(name: "Shipping",
+  description: Faker::Lorem.sentence(3, false, 4))
 
-3.times do |i|
-  OrderStatus.create!(name: "Status_#{i}",
-    description: Faker::Lorem.sentence(3, false, 4))
-end
- users = User.all
-
- users.each do |user|
-   Order.create!(user: user, order_status: OrderStatus.find(2),
-    address: Faker::Address.street_address,
-    full_name: Faker::Name.name_with_middle,
-    phone: Faker::PhoneNumber.cell_phone)
- end
-
-orders = Order.all
-
-orders.each do |order|
-  OrderDetail.create!(product: Product.find(2), order: order, quantity: 3,
-    price: 1000)
-end
+Product.create!(name: Faker::Commerce.product_name, description: Faker::Lorem.sentence(5, false, 6), sub_category: SubCategory.find(1), classification: Classification.find(1), price: 100000,
+  image: open("public/uploads/user/profile_image/24/photo-1453365607868-7deed8cc7d26.jpg"),
+  quantity: 10)

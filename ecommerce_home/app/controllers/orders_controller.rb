@@ -1,13 +1,15 @@
 class OrdersController < ApplicationController
   before_action :logged_in_user
+
   def create
     @order = current_user.orders.build order_params
+    @order.order_status_id = Settings.order.status_default
     ActiveRecord::Base.transaction do
-      if @order.save!
+      if @order.save
         add_order_item
         destroy_cart
         @order.send_confirmation_email current_user
-        flash[:info] = "Order confirmation email has sent. Please check email to confirm your order"
+        flash[:info] = t "success.order_success"
         redirect_to carts_path
       else
         flash_slq_error @order
@@ -22,7 +24,8 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit :order_status_id, :address
+    params.require(:order).permit :order_status_id, :address, :address, :phone,
+      :full_name
   end
 
   def destroy_cart
@@ -31,7 +34,7 @@ class OrdersController < ApplicationController
 
   def flash_slq_error object
     flash[:danger] = object.errors.full_messages
-    redirect_to root_url
+    redirect_to :back
   end
 
   def add_order_item

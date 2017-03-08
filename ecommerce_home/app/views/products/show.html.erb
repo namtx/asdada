@@ -6,27 +6,28 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <%= image_tag @product.image.url, alt: "product image", class: "img-responsive" %>
+      <%= image_tag @product.image.url, alt: "alt.product_image",
+        class: "img-responsive" %>
     </div>
     <div class="col-md-6">
       <h2><%= @product.name %></h2>
-      <div class="row user-rate-product" product-id="<%= @product.id %>" data-score="<%= @product.average_rate %>">
-      </div>
+      <% if @rating.present? %>
+        <div class="product-rate" data-score="<%= @product.average_rate %>">
+        </div>
+      <% else %>
+        <div class="row user-rate-product" product-id="<%= @product.id %>"
+          user-id="<%= current_user.id %>">
+        </div>
+      <% end %>
       <i><%= pluralize(@product.rate_count, "review") %></i>
       <p class="description"><%= @product.description %></p>
+      <%= render "layouts/facebook_share" %>
       <h3 class="price"><%= number_to_currency @product.price %></h3>
-      <a href="#" class="btn btn-primary btn-add-to-cart" product="<%= @product.id %>">Add to cart</a>
-      <div class="fb-comments" data-href="http://localhost:3000/products/10" data-numposts="5"></div>
+      <a href="#" class="btn btn-primary btn-add-to-cart"
+        product="<%= @product.id %>"><%= t "product.add_to_cart" %></a>
+      <div class="fb-comments" data-href="<%= product_url @product %>"
+        data-numposts="5"></div>
     </div>
   </div>
 </div>
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=219785741821521";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-<div class="fb-share-button" data-href="http://localhost:3000" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A3000%2F&amp;src=sdkpreparse">Share</a></div>
+<%= render "layouts/facebook_comment" %>

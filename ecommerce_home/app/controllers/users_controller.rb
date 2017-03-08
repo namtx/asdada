@@ -3,11 +3,6 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :show]
   before_action :logged_in_user, except: [:new, :create]
 
-  def index
-    @users = User.order_by_name.paginate page: params[:id],
-      per_page: 15
-  end
-
   def new
     @user = User.new
   end
@@ -16,15 +11,20 @@ class UsersController < ApplicationController
     @user = User.new user_params
     if @user.save
       login @user
-      flash[:success] = t "signup.success"
+      flash[:success] = t "success.signup"
       redirect_to @user
     else
       render :new
     end
   end
+
   def show
     @recently_viewed_products = recently_viewed_products.reverse
-    @orders = current_user.orders
+      .paginate page: params[:page], per_page: Settings.paginate.recently_viewed
+    @orders = current_user.orders.paginate page: params[:order_page],
+      per_page: Settings.paginate.user_orders
+    @suggested_products = current_user.suggested_products.paginate page: params[:suggest_page],
+      per_page: Settings.paginate.suggested_products
   end
 
   def edit
@@ -32,10 +32,10 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes user_params
-      flash[:success] = "Successfully changed"
+      flash[:success] = "success.update"
       redirect_to @user
     else
-      flash[:danger] = "Something went wrong"
+      flash[:danger] = "error.update_failed"
       render :edit
     end
   end
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   def load_user
     @user = User.find_by id: params[:id]
     unless @user
-      flash[:danger] = t "user_not_found"
+      flash[:danger] = t "error.user_not_found"
       redirect_to root_url
     end
   end

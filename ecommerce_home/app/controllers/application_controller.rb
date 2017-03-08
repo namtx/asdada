@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   include CartsHelper
 
   private
+
   def logged_in_user
     unless logged_in?
       store_location
@@ -15,10 +16,16 @@ class ApplicationController < ActionController::Base
 
   def correct_user
     @user = User.find_by id: params[:id]
-    redirect_to root_path unless current_user? @user
+    if @user.nil? || !current_user.is_user?(@user)
+      flash[:danger] = t "error.user_not_found"
+      redirect_to root_url
+    end
   end
 
   def admin_user
-    redirect_to root_path unless current_user.is_admin?
+    unless current_user.is_admin?
+      redirect_to root_path
+      flash[:danger] = t "error.permission_denied"
+    end
   end
 end

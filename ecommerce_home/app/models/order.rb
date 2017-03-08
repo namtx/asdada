@@ -2,21 +2,22 @@ class Order < ApplicationRecord
   attr_accessor :confirmation_token
   belongs_to :user
   belongs_to :order_status
+
   has_many :order_details, dependent: :destroy
   has_many :products, through: :order_details
 
-  # validates :address, presence: true,
-  #   length: {maximum: Settings.validation.address}
-  # validates :full_name, presence: true,
-  #   length: {maximum: Settings.validation.full_name}
-  # validates :phone, presence: true, length: {maximum: Settings.validation.phone}
+  validates :address, presence: true,
+    length: {maximum: Settings.validation.address}
+  validates :full_name, presence: true,
+    length: {maximum: Settings.validation.full_name}
+  validates :phone, presence: true, length: {maximum: Settings.validation.phone}
 
   before_create :create_confirmation_digest
 
   scope :by_status_id, ->status_id do
     where "order_status_id = #{status_id}" if status_id.present?
   end
-  
+
   def order_details_count
     order_details.size
   end

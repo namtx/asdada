@@ -12,10 +12,11 @@
     <p><%= order.order_status.name %></p>
   </td>
   <td>
-    <% if order.order_status_id == 2 %>
-      <%= form_tag admin_order_path(order), method: :put, id: "change-status" do %>
-        <%= hidden_field_tag :status_id, 3 %>
-        <%= submit_tag "Ship", class: "btn btn-success" %>
+    <% if order.order_status_id == Settings.order.confirmed_status %>
+      <%= form_tag admin_order_path(order), method: :put,
+        id: "change-status" do %>
+        <%= hidden_field_tag :status_id, Settings.order.shipping_status %>
+        <%= submit_tag t("orders.ship"), class: "btn btn-success" %>
       <% end %>
 
     <% end %>

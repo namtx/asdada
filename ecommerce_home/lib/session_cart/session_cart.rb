@@ -13,7 +13,9 @@ class SessionCart
   end
 
   def remove product
-    session[:current_cart].tap {|current_cart| current_cart.delete(product.id.to_s) }
+    session[:current_cart].tap do |current_cart|
+      current_cart.delete product.id.to_s
+    end
   end
 
   def size
@@ -25,11 +27,19 @@ class SessionCart
   end
 
   def products
-    self.products = session[:current_cart].keys.map { |product_id| Product.find_by id: product_id.to_i }
+    self.products = session[:current_cart].keys.map do |product_id|
+      Product.find_by id: product_id.to_i
+    end
+  end
+
+  def product_count
+    products.size
   end
 
   def total
-    session[:current_cart].sum {|product_id, quantity| Product.find_by(id: product_id.to_i).price * quantity.to_i}
+    session[:current_cart].sum do |product_id, quantity|
+      Product.find_by(id: product_id.to_i).price * quantity.to_i
+    end
   end
 
   def destroy

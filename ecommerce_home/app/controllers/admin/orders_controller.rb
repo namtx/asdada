@@ -3,8 +3,8 @@ class Admin::OrdersController < ApplicationController
   before_action :load_order, only: [:show, :destroy, :update]
 
   def index
-    @orders = Order.by_status_id(params[:status_id]).paginate page: params[:page],
-      per_page: Settings.paginate.admin_orders
+    @orders = Order.by_status_id(params[:status_id])
+      .paginate page: params[:page], per_page: Settings.paginate.admin_orders
   end
 
   def show

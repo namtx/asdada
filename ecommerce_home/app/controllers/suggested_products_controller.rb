@@ -8,8 +8,9 @@ class SuggestedProductsController < ApplicationController
   def create
     @suggested_product = current_user.suggested_products.new suggested_product_params
     if @suggested_product.save
-      flash[:success] = "Thank you for your suggest"
-      redirect_to controller: :users, action: :show, id: current_user.id, tab: :suggested_product_tab
+      flash[:success] = "success.suggest"
+      redirect_to controller: :users, action: :show, id: current_user.id,
+        tab: :suggested_product_tab
     else
       render :new
     end
@@ -20,19 +21,20 @@ class SuggestedProductsController < ApplicationController
 
   def update
     if @suggested_product.update_attributes suggested_product_params
-      flash[:success] = "Successfully edited"
-      redirect_to controller: :users, action: :show, id: current_user.id, tab: :suggested_product_tab
+      flash[:success] = "success.edited"
+      redirect_to controller: :users, action: :show,
+      id: current_user.id, tab: :suggested_product_tab
     else
-      flash[:danger] = "Something went wrong"
+      flash[:danger] = "error.update_failed"
       redirect_to :back
     end
   end
 
   def destroy
     if @suggested_product.destroy
-      flash.now[:success] = "Successfully deleted"
+      flash.now[:success] = "success.delete"
     else
-      flash[:danger] = "Delete failed"
+      flash[:danger] = "error.delete_failed"
       redirect_to :back
     end
   end
@@ -42,7 +44,7 @@ class SuggestedProductsController < ApplicationController
   def load_suggested_product
     @suggested_product = current_user.suggested_products.find_by id: params[:id]
     unless @suggested_product
-      flash[:danger] = "Suggested product not found"
+      flash[:danger] = "error.suggested_product_not_found"
       redirect_to :back
     end
   end

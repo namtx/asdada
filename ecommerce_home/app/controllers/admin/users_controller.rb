@@ -22,7 +22,7 @@ class Admin::UsersController < ApplicationController
   def load_user
     @user = User.find_by id: params[:id]
     unless @user
-      flash[:danger] = "User not found"
+      flash[:danger] = "error.user_not_found"
       redirect_to admin_users
     end
   end

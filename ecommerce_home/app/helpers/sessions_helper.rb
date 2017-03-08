@@ -1,4 +1,5 @@
 module SessionsHelper
+
   def login user
     session[:user_id] = user.id
   end
@@ -20,13 +21,14 @@ module SessionsHelper
   end
 
   def logged_in?
-    !current_user.nil?
+    current_user.present?
   end
 
   def logout
     forget @current_user
     session.delete :user_id
     session.delete :current_cart
+    cookies.delete :recentlyviewedproduct
     @current_user = nil
   end
 

@@ -1,6 +1,7 @@
 <tr class="product-in-cart">
   <td class="w15">
-    <%= image_tag order_detail.product.image.url, alt: "product image", class: "img-responsive" %>
+    <%= image_tag order_detail.product.image.url,
+      alt: t("alt.product_image"), class: "img-responsive" %>
   </td>
   <td class="w45">
     <p><%= order_detail.product.name %></p>

@@ -35,7 +35,8 @@ class Product < ApplicationRecord
     left_outer_joins(:order_details)
     .uniq
     .group("products.id")
-    .order("count(order_details.id) desc")}
+    .order("count(order_details.id) desc")
+    .take(Settings.paginate.hot_trend_products)}
 
   scope :top_new_products, -> {order "created_at desc"}
 
@@ -61,8 +62,8 @@ class Product < ApplicationRecord
     ratings.count
   end
 
-  def is_number? str
-    str =~ /\A\d+\z/ ? true : false
+  def is_out_of_stock? quantity
+    quantity < quantity
   end
 
 end

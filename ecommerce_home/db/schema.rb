@@ -114,10 +114,10 @@ ActiveRecord::Schema.define(version: 20170305055843) do
   create_table "users", force: :cascade do |t|
     t.string   "user_name"
     t.string   "email"
-    t.boolean  "is_admin",        default: true
+    t.boolean  "is_admin",        default: false
     t.string   "profile_image"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "password_digest"
     t.string   "remember_digest"
     t.index ["user_name", "email"], name: "index_users_on_user_name_and_email", unique: true

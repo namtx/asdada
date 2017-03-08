@@ -1,5 +1,5 @@
 <div class="container hot-trends">
-  <h1>Hot trends products</h1>
+  <h1><%= t ("home.hot_trends") %></h1>
   <div class="row">
     <div class="col-md-12">
       <%= render partial: "hot_trend_product", locals: {products: @hot_trends} %>
@@ -8,6 +8,7 @@
 </div>
 
 <div class="container new-product">
-  <h1>New products</h1>
+  <h1><%= t ("home.new_products") %></h1>
   <%= render @new_products %>
+  <%= will_paginate @new_products %>
 </div>

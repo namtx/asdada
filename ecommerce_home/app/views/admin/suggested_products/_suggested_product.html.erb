@@ -1,6 +1,7 @@
 <tr class="product-in-cart">
   <td class="w45">
-    <%= link_to image_tag(suggested_product.image.url, alt: t("alt.product_image"), class: "img-responsive") %>
+    <%= link_to image_tag(suggested_product.image.url,
+      alt: t("alt.product_image"), class: "img-responsive") %>
   </td>
   <td class="w45">
     <b><%= suggested_product.name %></b>
@@ -10,6 +11,8 @@
     <p><%= number_to_currency suggested_product.price %></p>
   </td>
   <td>
-    <%= link_to content_tag(:i, "", class: "fa fa-times text-danger"), admin_suggested_product_path(suggested_product), method: :delete, data: { confirm: "Are you sure?" }, remote: true %>
+    <%= link_to content_tag(:i, "", class: "fa fa-times text-danger"),
+      admin_suggested_product_path(suggested_product), method: :delete,
+      data: { confirm: "Are you sure?" }, remote: true %>
   </td>
 </tr>

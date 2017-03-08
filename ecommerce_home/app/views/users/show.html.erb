@@ -13,13 +13,17 @@
   <div class="col-md-8">
     <ul class="nav nav-tabs nav-justified" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#home_tab" role="tab">Recently viewed products</a>
+        <a class="nav-link active" data-toggle="tab" href="#home_tab" role="tab"><%= t "user_profile.recently_viewed" %></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#suggested_product_tab" role="tab">Suggested products</a>
+        <a class="nav-link active" data-toggle="tab" href="#suggested_product_tab" role="tab">
+          <%= t "user_profile.suggested_products" %>
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#orders_tab" role="tab">Orders</a>
+        <a class="nav-link active" data-toggle="tab" href="#orders_tab" role="tab">
+          <%= t "user_profile.orders" %>
+        </a>
       </li>
     </ul>
     <div class="tab-content">
@@ -39,6 +43,7 @@
             <% end %>
           </tbody>
         </table>
+        <%= will_paginate @recently_viewed_products %>
       </div>
       <div class="tab-pane" id="suggested_product_tab" role="tabpanel">
         <table class="table recenty-viewed">
@@ -51,24 +56,26 @@
             </tr>
           </thead>
           <tbody>
-            <%= render current_user.suggested_products %>
+            <%= render @suggested_products %>
           </tbody>
         </table>
+        <%= will_paginate @suggested_products, param_name: :suggest_page %>
       </div>
       <div class="tab-pane" id="orders_tab" role="tabpanel">
         <table class="table recenty-viewed">
           <thead>
             <tr>
               <th></th>
-              <th><%= "Products" %></th>
-              <th><%= "total" %></th>
-              <th><%= "status" %></th>
+              <th><%= t "orders.product" %></th>
+              <th><%= t "orders.total" %></th>
+              <th><%= t "orders.status" %></th>
             </tr>
           </thead>
           <tbody>
             <%= render @orders %>
           </tbody>
         </table>
+        <%= will_paginate @orders, param_name: :order_page %>
       </div>
     </div>
   </div>

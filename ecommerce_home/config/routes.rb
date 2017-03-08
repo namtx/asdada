@@ -15,12 +15,12 @@ Rails.application.routes.draw do
     resources :orders, only: [:show]
   end
   resources :products do
-    resources :ratings
+    resources :ratings, only: :create
   end
   resources :cart, only: :index
   resources :categories
   resources :orders
-  resources :order_confirmations, only: [:edit]
+  resources :order_confirmations, only: :edit
   namespace :admin do
     resources :products do
       collection {post :import}

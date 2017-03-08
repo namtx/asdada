@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   attr_accessor :remember_token
+
   has_many :comments, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_many :suggested_products, dependent: :destroy
@@ -7,7 +8,9 @@ class User < ApplicationRecord
 
   mount_uploader :profile_image, UserUploader
 
-  validates :user_name, presence: true, length: {in: 3..15}
+  validates :user_name, presence: true,
+    length: {minimum: Settings.validation.user_name_min,
+    maximum: Settings.validation.user_name_max}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true,
     length: {maximum: Settings.validation.email},
@@ -44,12 +47,16 @@ class User < ApplicationRecord
   end
 
   def authenticated? attribute, token
-    digest = send("#{attribute}_digest")
+    digest = send "#{attribute}_digest"
     if digest.nil?
       false
     else
       BCrypt::Password.new(digest).is_password? token
     end
+  end
+
+  def is_user? user
+    self == user
   end
 
   private

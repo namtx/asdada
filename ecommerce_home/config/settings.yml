@@ -14,6 +14,7 @@ validation:
   user_name_min: 3
 image:
   profile_upload_size: "300x300"
+  product_upload_size: "300x300"
 login:
   remember_me: "1"
 recently_viewed:
@@ -27,6 +28,11 @@ paginate:
   admin_suggested_products: 6
   admin_users: 6
   admin_products: 12
+  top_new_products: 16
+  user_orders: 6
+  hot_trend_products: 12
+  recently_viewed: 6
+  suggested_products: 6
 average_rate_round: 2
 search_form:
   max_price: 10000000
@@ -34,3 +40,19 @@ search_form:
   slider_step: 100000
   slider_value: "[0, 2000000]"
 average_rate_round: 2
+order:
+  status_default: 1
+  quantity_default: 1
+  confirmed_status: 2
+  shipping_status: 3
+suggested:
+  price_max: 10000000
+  price_min: 0
+  price_step: 1000
+user_form:
+  size_thumbnail: "300x300"
+product_form:
+  min_price: 0
+  price_step: 1000
+  quantity_min: 0
+  quantity_step: 1

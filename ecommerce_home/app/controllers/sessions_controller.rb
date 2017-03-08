@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+
   def new
   end
 
@@ -9,7 +10,7 @@ class SessionsController < ApplicationController
       params[:sessions][:remember_me] == Settings.login.remember_me ? remember(user): forget(user)
       redirect_back_or user
     else
-      flash.now[:danger] = t "login_page.invalid_email_password"
+      flash.now[:danger] = t "login.invalid_email_password"
       render :new
     end
   end

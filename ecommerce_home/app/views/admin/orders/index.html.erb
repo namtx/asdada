@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
-    <h2>Orders Management</h2>
+    <h2><%= t("order_management.title") %></h2>
     <%= form_tag admin_orders_path, method: :get, id: "seach-order", class: "search-box" do %>
       <%= select_tag "status_id",
         options_for_select(order_status_select),class: "select form-control status-id-select",
-        include_blank: "All" %>
-      <button class="btn btn-danger" form="seach-order" type="submit">Search</button>
+        include_blank: t("select.select_all")%>
+      <button class="btn btn-danger" form="seach-order" type="submit"><%= t("button.search") %></button>
     <% end %>
   </div>
 </div>
@@ -17,9 +17,9 @@
           <thead>
             <tr>
               <th></th>
-              <th><%= "Products" %></th>
-              <th><%= "Total" %></th>
-              <th><%= "Status" %></th>
+              <th><%= t("table.products") %></th>
+              <th><%= t("table.total") %></th>
+              <th><%= t("table.status") %></th>
             </tr>
           </thead>
           <tbody>
@@ -32,7 +32,7 @@
   <% else %>
   <div class="col-md-8 col-md-offset-2">
     <div class="alert alert-danger no-user-info">
-      <p class="text-center">There is no order there</p>
+      <p class="text-center"><%= t("info.no_order") %></p>
     </div>
   </div>
   <% end %>

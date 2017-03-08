@@ -20,12 +20,15 @@ class CartsController < ApplicationController
 
   def update_session_cart
     load_product
-    if is_out_of_stock?
+    if @product.is_out_of_stock? params[:quantity].to_i
       flash.now[:danger] = t "error.product_out_of_stock"
     else
       @current_cart = current_cart
-      @current_cart.add @product, params[:quantity]
-      @product.update_attribute :quantity, @product.quantity - params[:quantity].to_i
+      if @product.update_attributes(quantity: @product.quantity - params[:quantity].to_i)
+        @current_cart.add @product, params[:quantity]
+      else
+        flash[:danger] = t "error.add_cart_failed"
+      end
     end
   end
 
@@ -43,7 +46,7 @@ class CartsController < ApplicationController
   def load_product
     @product = Product.find_by id: params[:product_id].to_i
     unless @product
-      flash.now[:danger] = "Product not found"
+      flash.now[:danger] = t "error.product_not_found"
       redirect_to :back
     end
   end

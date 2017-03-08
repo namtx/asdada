@@ -1,5 +1,5 @@
 <%= form_for @user, html: { multipart: true } do |f| %>
-  <%= render "shared/error_messages", object: f.object%>
+  <%= render "shared/error_messages", object: f.object %>
   <div class="form-group">
     <%= f.label :user_name %>
     <%= f.text_field :user_name, class: "form-control" %>
@@ -24,10 +24,13 @@
     <%= f.label :profile_image, "Profile image" %>
     <%= f.file_field :profile_image, id: "image-upload" %>
     <% if @user.profile_image.present? %>
-      <%= image_tag @user.profile_image.url, alt: "logo", class: "img-responsive", id: "current-profile-image"%>
+      <%= image_tag @user.profile_image.url, alt: t("alt.profile_image"),
+        class: "img-responsive", id: "current-profile-image"%>
     <% end %>
-    <%= image_tag "#", {size: "300x300", alt: "profile image",
+    <%= image_tag "#", {size: Settings.user_form.size_thumbnail,
+      alt: t("alt.profile_image"),
       class: "img-thumbnail hidden", id: "img_prev"} %>
   </div>
+
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>

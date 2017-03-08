@@ -41,10 +41,10 @@ class Admin::ProductsController < ApplicationController
 
   def destroy
     if @product.destroy
-      flash[:success] = "Successfully deleted"
+      flash[:success] = t "success.delete"
       redirect_to admin_products_path
     else
-      flash[:danger] = t "error.delete_failed"
+      flash[:danger] = t "error.detele"
       redirect_to admin_products_path
     end
   end
