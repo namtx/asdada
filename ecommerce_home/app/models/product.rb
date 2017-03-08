@@ -15,6 +15,7 @@ class Product < ApplicationRecord
   validates :sub_category_id, presence: true
   validates :classification_id, presence: true
   validates :image, presence: true
+
   scope :by_sub_category, ->sub_category_id do
     where sub_category_id: sub_category_id if sub_category_id.present?
   end
@@ -31,21 +32,31 @@ class Product < ApplicationRecord
     where "price <= #{max}" if max.present?
   end
 
+  scope :by_classification, ->classification_id do
+    where classification_id: classification_id if classification_id.present?
+  end
+
   scope :top_order_products, -> {
     left_outer_joins(:order_details)
-    .uniq
     .group("products.id")
     .order("count(order_details.id) desc")
     .take(Settings.paginate.hot_trend_products)}
 
   scope :top_new_products, -> {order "created_at desc"}
 
-  def self.import file
-    CSV.foreach(file.path, headers: true) do |row|
-      product = Product.new row.to_h
-      product.image = open("public/uploads/user/profile_image/24/#{row.to_h["image"]}")
-      product.save!
+  def self.import? file
+    begin
+      ActiveRecord::Base.transaction do
+        CSV.foreach(file.path, headers: true) do |row|
+          product = Product.new row.to_h
+          product.image = open("public/uploads/user/profile_image/24/#{row.to_h["image"]}")
+          product.save!
+        end
+      end
+    rescue ActiveRecord::RecordInvalid
+      return false
     end
+    true
   end
 
   def average_rate
@@ -62,8 +73,8 @@ class Product < ApplicationRecord
     ratings.count
   end
 
-  def is_out_of_stock? quantity
-    quantity < quantity
+  def is_out_of_stock? order_quantity
+    quantity < order_quantity
   end
 
 end

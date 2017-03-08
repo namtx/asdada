@@ -39,10 +39,6 @@ class CartsController < ApplicationController
     @current_cart.remove @product
   end
 
-  def is_out_of_stock?
-    @product.quantity < params[:quantity].to_i
-  end
-
   def load_product
     @product = Product.find_by id: params[:product_id].to_i
     unless @product

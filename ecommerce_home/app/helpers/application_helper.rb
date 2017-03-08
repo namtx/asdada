@@ -12,6 +12,10 @@ module ApplicationHelper
     OrderStatus.all.map {|status| [status.name, status.id]}
   end
 
+  def classification_select
+    Classification.all.map {|classification| [classification.name, classification.id]}
+  end
+
   def statistic_select
     options = [t("statistic.top_day_product"), t("statistic.top_month_product"),
       t("statistic.top_year_product"), t("statistic.top_day_income_product"),

@@ -27,8 +27,8 @@ module SessionsHelper
   def logout
     forget @current_user
     session.delete :user_id
+    current_cart.destroy
     session.delete :current_cart
-    cookies.delete :recentlyviewedproduct
     @current_user = nil
   end
 

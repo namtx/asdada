@@ -63,6 +63,7 @@ $(document).on('turbolinks:load', function(){
     }
   });
 
+  $('.user-rate-product').empty();
   $('.user-rate-product').raty({
     path: '/assets',
     starOff: 'star-off.png',
@@ -94,6 +95,7 @@ $(document).on('turbolinks:load', function(){
     },
   });
 
+  $('.recently-viewed-rating').empty();
   $('.recently-viewed-rating').raty({
     path: '/assets',
     starOff: 'star-off.png',
@@ -104,6 +106,7 @@ $(document).on('turbolinks:load', function(){
     readOnly: true
   });
 
+  $('.admin-rate-product').empty();
   $('.admin-rate-product').raty({
     path: '/assets',
     starOff: 'star-off.png',
@@ -126,7 +129,6 @@ $(document).on('turbolinks:load', function(){
 
   function selectedTab(){
     url = window.location.href
-    console.log(url.split('?tab=')[1]);
     if (url.split('?tab=')[1] === 'suggested_product_tab'){
       $('a[href="#suggested_product_tab"]').tab('show');
     }

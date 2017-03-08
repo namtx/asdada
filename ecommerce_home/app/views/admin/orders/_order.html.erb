@@ -2,7 +2,7 @@
   <td class="w15">
     <%= link_to "##{order.id}", admin_order_path(order) %>
   </td>
-  <td class="w45">
+  <td class="w25">
     <p><%= pluralize order.order_details_count, "product" %></p>
   </td>
   <td class="w15">
@@ -14,11 +14,15 @@
   <td>
     <% if order.order_status_id == Settings.order.confirmed_status %>
       <%= form_tag admin_order_path(order), method: :put,
-        id: "change-status" do %>
-        <%= hidden_field_tag :status_id, Settings.order.shipping_status %>
+        class: "ship-reject-form" do %>
+        <%= hidden_field_tag :order_action, "ship" %>
         <%= submit_tag t("orders.ship"), class: "btn btn-success" %>
       <% end %>
-
+      <%= form_tag admin_order_path(order), method: :put,
+        class: "ship-reject-form" do %>
+        <%= hidden_field_tag :order_action, "reject" %>
+        <%= submit_tag t("orders.reject"), class: "btn btn-danger" %>
+      <% end %>
     <% end %>
   </td>
 </tr>

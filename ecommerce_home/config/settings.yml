@@ -56,3 +56,6 @@ product_form:
   price_step: 1000
   quantity_min: 0
   quantity_step: 1
+mailer:
+  host: "localhost:3000"
+  production: "minami-rails.herokuapp.com"

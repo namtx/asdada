@@ -39,7 +39,7 @@
     <% if @order.order_status_id == Settings.order.confirmed_status %>
       <div class="row">
         <%= form_tag admin_order_path(@order), method: :put do |f| %>
-          <%= hidden_field_tag :status_id, value: Settings.order.shipping_status %>
+          <%= hidden_field_tag :status_id, Settings.order.shipping_status %>
           <%= submit_tag t("orders.ship"), class: "btn btn-success btn-checkout" %>
         <% end %>
       </div>

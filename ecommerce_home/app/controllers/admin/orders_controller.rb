@@ -11,12 +11,23 @@ class Admin::OrdersController < ApplicationController
   end
 
   def update
-    if @order.update_attribute(:order_status_id, params[:status_id].to_i)
-      flash[:success] = t "success.shipped"
-      redirect_to admin_orders_path
-    else
-      flash[:danger] = t "error.update_failed"
-      redirect_to admin_order_path
+    case params[:order_action]
+    when "reject"
+      if @order.reject?
+        flash[:success] = t "success.shipped"
+        redirect_to admin_orders_path
+      else
+        flash[:danger] = t "error.update_failed"
+        redirect_to admin_order_path
+      end
+    when "ship"
+      if @order.ship?
+        flash[:success] = t "success.shipped"
+        redirect_to admin_orders_path
+      else
+        flash[:danger] = t "error.update_failed"
+        redirect_to admin_order_path
+      end
     end
   end
 
