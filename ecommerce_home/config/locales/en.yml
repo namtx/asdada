@@ -51,6 +51,13 @@ en:
     buy_now: "buy now"
   error:
     product_not_found: "Product is not found."
+    update_failed: "Update failed."
+    order_not_found: "Order not found."
+    delete_failed: "Delete failed."
+    upload: "Upload failed."
+    suggested_product_not_found: "Suggested product not found."
+    please_log_in: "Please log in."
+    product_out_of_stock: "Product is out of stock now."
   search_form:
     search: "Search"
     all: "All"
@@ -59,3 +66,16 @@ en:
     rating: "Rating"
   index_product:
     not_found: "There is no product matches your search."
+  statistic:
+    top_day_income_product: "Top day income products"
+    top_month_income_product: "Top month income products"
+    top_year_income_product: "Top year income products"
+    year_income: "Year income"
+    month_income: "Month income"
+    day_income: "Day income"
+    get_statistic: "Get Statistic"
+  success:
+    shipped: "Successfully shipped."
+    update: "Successfully updated."
+    upload: "Successfully imported."
+    detele: "Successfully deleted."

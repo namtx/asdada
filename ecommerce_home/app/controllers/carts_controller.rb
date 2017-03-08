@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
   before_action :update_session_cart, only: [:create, :update]
-  before_action :destroy_session_cart, only: [:destroy]
+  before_action :destroy_session_cart, only: :destroy
   before_action :logged_in_user
 
   def create
@@ -21,7 +21,7 @@ class CartsController < ApplicationController
   def update_session_cart
     load_product
     if is_out_of_stock?
-      flash.now[:danger] = "Product is out of stock"
+      flash.now[:danger] = t "error.product_out_of_stock"
     else
       @current_cart = current_cart
       @current_cart.add @product, params[:quantity]
@@ -32,7 +32,7 @@ class CartsController < ApplicationController
   def destroy_session_cart
     load_product
     @current_cart = current_cart
-    @product.update_attribute :quantity, @product.quantity + @current_cart.quantity(@product)
+    @product.update_attributes quantity: @product.quantity + @current_cart.quantity(@product)
     @current_cart.remove @product
   end
 

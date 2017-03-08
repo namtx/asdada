@@ -4,15 +4,15 @@ class Admin::UsersController < ApplicationController
 
   def index
     @users = User.by_name_email(params[:keyword]).paginate page: params[:page],
-      per_page: 6
+      per_page: Settings.paginate.admin_users
   end
 
   def destroy
     if @user.destroy
-      flash[:success] = "Successfully deleted"
+      flash[:success] = t "success.delete"
       redirect_to admin_users_path
     else
-      flash[:danger] = "Delete failed"
+      flash[:danger] = t "error.delete"
       redirect_to admin_users_path
     end
   end

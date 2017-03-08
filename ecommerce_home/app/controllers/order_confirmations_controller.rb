@@ -6,7 +6,7 @@ class OrderConfirmationsController < ApplicationController
     if user && user.id == order.user_id && order && order.order_status_id == 1 && order.authenticated?(:confirmation, params[:id])
       order.confirm
       login user
-      flash[:success] = "Your order is shipping"
+      flash[:success] = ""
       redirect_to user
     else
       flash[:danger] = "invalid order confirmation link"

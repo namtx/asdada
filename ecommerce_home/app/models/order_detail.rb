@@ -8,15 +8,37 @@ class OrderDetail < ApplicationRecord
     numericality: {greater_than_or_equal_to: Settings.validation.quantity}
   validates :price, presence: true, numericality: true
 
-  scope :group_by_product_this_day, -> {
-    where("")
-    .left_outer_joins(:product)
+  scope :number_of_product, -> {
+    left_outer_joins(:product)
     .group("products.id")
     .sum(:quantity)}
 
-  scope :scope_name, -> { where(field: true)   }
+  scope :income_of_product, -> {
+    left_outer_joins(:product)
+    .group("products.id")
+    .sum("order_details.price * order_details.quantity")}
 
-  def self.product_order_chart_data
-    self.group_by_product.transform_keys { |product_id| Product.find_by(id: product_id).name }
+  scope :by_month, ->date {
+    where("order_details.created_at >= '#{date.beginning_of_month.to_s(:db)}' AND order_details.created_at <= '#{Time.zone.now.end_of_month.to_s(:db)}'")}
+  scope :by_year, ->date {
+    where("order_details.created_at >= '#{date.beginning_of_year.to_s(:db)}' AND order_details.created_at <= '#{Time.zone.now.end_of_year.to_s(:db)}'")}
+  scope :by_day, ->date {
+    where("order_details.created_at >= '#{date.beginning_of_day.to_s(:db)}' AND order_details.created_at <= '#{Time.zone.now.end_of_day.to_s(:db)}'")}
+
+  def self.number_of_product_chart_data
+    self.number_of_product.transform_keys { |product_id| Product.find_by(id: product_id).name }
   end
+
+  def self.income_of_product_chart_data
+    self.income_of_product.transform_keys { |product_id| Product.find_by(id: product_id).name }
+  end
+
+  scope :income_monthy, -> {
+    group_by_month(:created_at).sum("quantity * price")}
+
+  scope :income_yearly, -> {
+    group_by_year(:created_at).sum("quantity * price")}
+
+  scope :income_daily, -> {
+    group_by_day(:created_at).sum("quantity * price")}
 end

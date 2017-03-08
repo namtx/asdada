@@ -23,6 +23,10 @@ max_rate: 5
 min_rate: 1
 paginate:
   product_show: 12
+  admin_orders: 6
+  admin_suggested_products: 6
+  admin_users: 6
+  admin_products: 12
 average_rate_round: 2
 search_form:
   max_price: 10000000
