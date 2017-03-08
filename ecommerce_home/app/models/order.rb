@@ -46,7 +46,26 @@ class Order < ApplicationRecord
   end
 
   def confirm
-    update_attribute :order_status_id, 2
+    update_attributes order_status_id: Settings.order.confirmed_status
+  end
+
+  def reject?
+    begin
+      ActiveRecord::Base.transaction do
+        order_details.each do |order_detail|
+          product = order_detail.product
+          product.update_attributes! quantity: product.quantity + order_detail.quantity
+          destroy!
+        end
+      end
+    rescue ActiveRecord::RecordNotSaved, ActiveRecord::RecordNotDestroyed
+      return false
+    end
+    true
+  end
+
+  def ship?
+    update_attributes order_status_id: Settings.order.shipping_status
   end
 
   def send_confirmation_email user

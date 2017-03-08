@@ -5,6 +5,7 @@ class Admin::ProductsController < ApplicationController
 
   def index
     @products = Product.by_sub_category(params[:sub_category])
+      .by_classification(params[:classsification])
       .by_name(params[:name])
       .by_min_price(@min_price)
       .by_max_price(@max_price)
@@ -50,11 +51,11 @@ class Admin::ProductsController < ApplicationController
   end
 
   def import
-    if Product.import(params[:file])
+    if Product.import?(params[:file])
       flash[:success] = t "success.upload"
       redirect_to admin_products_path
     else
-      flash[:success] = t "error.upload"
+      flash[:danger] = t "error.upload"
       redirect_to admin_products_path
     end
   end

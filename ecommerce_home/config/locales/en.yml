@@ -29,6 +29,7 @@ en:
     new_user: "New user?"
     title: "Login"
     signup: "Sign up now"
+    invalid_email_password: "Invalid email or password, try again."
   home:
     title: "Home"
     new_products: "New products"
@@ -79,6 +80,7 @@ en:
     category: "Category"
     rating: "Rating"
     name: "Name"
+    classification: "Classification"
   index_product:
     not_found: "There is no product matches your search."
   statistic:
@@ -100,9 +102,10 @@ en:
     signup: "Welcome to Ecommerce 23"
     rate_success: "Thanks for your rating."
     suggest: "Thanks for your suggesting"
+    order_approve: "Your order must be approved by us, before is shipped."
   info:
     no_product: "There is no product matches your search."
-    no_order: "There is no user there."
+    no_order: "There is no order there."
     no_user: "There is no user there."
   confirm:
     are_you_sure: "Are you sure?"
@@ -125,6 +128,7 @@ en:
     resend_confirm_email: "Resend confirmation email"
     title: "Order #"
     ship: "Ship"
+    reject: "Reject"
   facebook_share: "Share"
   product:
     add_to_cart: "Add to cart"
@@ -168,3 +172,6 @@ en:
     title: "Edit product"
   suggested_product_management:
     title: "Suggested products management"
+  mailer:
+    confirm: "Confirm"
+    greeting: "Dear "

@@ -17,8 +17,10 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @rating = Rating.find_by product_id: params[:id],
-      user_id: current_user.id
+    if logged_in?
+      @rating = Rating.find_by product_id: params[:id],
+        user_id: current_user.id
+    end
     recently_viewed_products.push @product
   end
 

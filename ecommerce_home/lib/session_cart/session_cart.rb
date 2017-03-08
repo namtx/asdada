@@ -43,6 +43,13 @@ class SessionCart
   end
 
   def destroy
+    products.each do |product|
+      product.update_attributes(quantity: product.quantity + quantity(product))
+    end
+    session[:current_cart] = nil
+  end
+
+  def checkout
     session[:current_cart] = nil
   end
 end

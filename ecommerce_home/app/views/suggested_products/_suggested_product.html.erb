@@ -1,14 +1,14 @@
 <tr class="product-in-cart">
-  <td class="w45">
+  <td class="w20">
     <%= link_to image_tag(suggested_product.image.url,
       alt: t("alt.product_image"), class: "img-responsive"),
       user_suggested_product_path(current_user) %>
   </td>
-  <td class="w45">
+  <td class="w60">
     <b><%= suggested_product.name %></b>
     <p><%= suggested_product.content %></p>
   </td>
-  <td class="w15">
+  <td class="w25">
     <p><%= number_to_currency suggested_product.price %></p>
   </td>
   <td>
