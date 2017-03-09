@@ -54,7 +54,7 @@ $(document).on('turbolinks:load', function(){
 
   $('.product-rate').empty();
   $('.product-rate').raty({
-    path: '/assets',
+    path: 'https://raw.githubusercontent.com/wbotelhos/raty/master/lib/images/',
     starOff: 'star-off.png',
     starOn: 'star-on.png',
     readOnly: true,
@@ -65,7 +65,7 @@ $(document).on('turbolinks:load', function(){
 
   $('.user-rate-product').empty();
   $('.user-rate-product').raty({
-    path: '/assets',
+    path: 'https://raw.githubusercontent.com/wbotelhos/raty/master/lib/images/',
     starOff: 'star-off.png',
     starOn: 'star-on.png',
     score: function(){
@@ -97,7 +97,7 @@ $(document).on('turbolinks:load', function(){
 
   $('.recently-viewed-rating').empty();
   $('.recently-viewed-rating').raty({
-    path: '/assets',
+    path: 'https://raw.githubusercontent.com/wbotelhos/raty/master/lib/images/',
     starOff: 'star-off.png',
     starOn: 'star-on.png',
     score: function(){
@@ -108,7 +108,7 @@ $(document).on('turbolinks:load', function(){
 
   $('.admin-rate-product').empty();
   $('.admin-rate-product').raty({
-    path: '/assets',
+    path: 'https://raw.githubusercontent.com/wbotelhos/raty/master/lib/images/',
     starOff: 'star-off.png',
     starOn: 'star-on.png',
     score: function(){
@@ -117,23 +117,12 @@ $(document).on('turbolinks:load', function(){
     readOnly: true
   });
 
-  function loadFacebookComment(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=213223815761488";
-    fjs.parentNode.insertBefore(js, fjs);
-  };
-
-  loadFacebookComment(document, 'script', 'facebook-jssdk');
-
   function selectedTab(){
     url = window.location.href
     if (url.split('?tab=')[1] === 'suggested_product_tab'){
       $('a[href="#suggested_product_tab"]').tab('show');
     }
   }
-
   selectedTab();
 });
 

@@ -58,4 +58,4 @@ product_form:
   quantity_step: 1
 mailer:
   host: "localhost:3000"
-  production: "minami-rails.herokuapp.com"
+  production: "ecommerce23.herokuapp.com"

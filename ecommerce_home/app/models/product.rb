@@ -39,8 +39,7 @@ class Product < ApplicationRecord
   scope :top_order_products, -> {
     left_outer_joins(:order_details)
     .group("products.id")
-    .order("count(order_details.id) desc")
-    .take(Settings.paginate.hot_trend_products)}
+    .order("count(order_details.id) desc")}
 
   scope :top_new_products, -> {order "created_at desc"}
 

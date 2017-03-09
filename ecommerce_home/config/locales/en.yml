@@ -105,7 +105,7 @@ en:
     order_approve: "Your order must be approved by us, before is shipped."
   info:
     no_product: "There is no product matches your search."
-    no_order: "There is no user there."
+    no_order: "There is no order there."
     no_user: "There is no user there."
   confirm:
     are_you_sure: "Are you sure?"
