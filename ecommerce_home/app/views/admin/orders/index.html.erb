@@ -3,7 +3,7 @@
     <h2><%= t("order_management.title") %></h2>
     <%= form_tag admin_orders_path, method: :get, id: "seach-order", class: "search-box" do %>
       <%= select_tag "status_id",
-        options_for_select(order_status_select),class: "select form-control status-id-select",
+        options_for_select(order_status_select, params[:status_id]),class: "select form-control status-id-select",
         include_blank: t("select.select_all")%>
       <button class="btn btn-danger" form="seach-order" type="submit"><%= t("button.search") %></button>
     <% end %>

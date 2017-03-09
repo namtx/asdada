@@ -19,6 +19,7 @@ en:
     suggest_management: "Suggest management"
     statistic: "Statistic"
     suggest_product: "Suggest product"
+    categories: "Categories management"
   footer:
     help: "Help"
     about: "About"
@@ -73,6 +74,8 @@ en:
     rate_failed: "Rating failed. Sorry about that!"
     user_not_found: "User not found."
     permission_denied: "Permission denied."
+    category_not_found: "Category not found."
+    sub_category_not_found: "Sub category not found."
   search_form:
     search: "Search"
     all: "All"
@@ -175,3 +178,7 @@ en:
   mailer:
     confirm: "Confirm"
     greeting: "Dear "
+  category_edit:
+    title: "Category edit"
+  sub_category_edit:
+    title: "Sub category edit"

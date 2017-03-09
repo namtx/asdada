@@ -17,8 +17,7 @@ Rails.application.routes.draw do
   resources :products do
     resources :ratings, only: :create
   end
-  resources :cart, only: :index
-  resources :categories
+  resources :carts, only: :index
   resources :orders
   resources :order_confirmations, only: :edit
   namespace :admin do
@@ -29,5 +28,7 @@ Rails.application.routes.draw do
     resources :orders
     resources :suggested_products, only: [:index, :destroy]
     resources :statistics
+    resources :categories
+    resources :sub_categories
   end
 end

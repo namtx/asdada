@@ -170,13 +170,6 @@ $(document).on('click', 'a.btn-add-to-cart', {}, function(e){
     data: {
       product_id: product_id,
       quantity: 1
-    },
-    beforeSend: function(){
-      $('#fakeLoader').fakeLoader({
-        timeToHide: 30,
-        spinner: 'spinner7',
-        bgColor: 'rgba(0, 0, 0, 0.5)'
-      });
     }
   });
   return false;

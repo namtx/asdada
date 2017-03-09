@@ -11,7 +11,7 @@
       <div class="form-group">
         <label for="date">Statistic</label>
         <%= select_tag :statistic,
-          options_for_select(statistic_select), include_blank: nil,
+          options_for_select(statistic_select, params[:statistic]), include_blank: nil,
           class: "select form-control" %>
       </div>
       <%= submit_tag t("statistic.get_statistic"), class: "btn btn-info" %>

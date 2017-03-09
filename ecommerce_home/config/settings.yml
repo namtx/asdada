@@ -33,6 +33,7 @@ paginate:
   hot_trend_products: 12
   recently_viewed: 6
   suggested_products: 6
+  order_detail: 6
 average_rate_round: 2
 search_form:
   max_price: 10000000

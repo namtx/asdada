@@ -18,6 +18,8 @@ class OrdersController < ApplicationController
   end
 
   def show
+    @order_details = @order.order_details.paginate page: params[:page],
+      per_page: Settings.paginate.order_detail
   end
 
   private
