@@ -48,7 +48,7 @@ class Product < ApplicationRecord
       ActiveRecord::Base.transaction do
         CSV.foreach(file.path, headers: true) do |row|
           product = Product.new row.to_h
-          product.image = open("public/uploads/user/profile_image/24/#{row.to_h["image"]}")
+          product.image = open "public/uploads/product/image/1/#{row.to_h["image"]}"
           product.save!
         end
       end

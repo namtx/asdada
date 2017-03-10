@@ -24,7 +24,7 @@ class CartsController < ApplicationController
       flash.now[:danger] = t "error.product_out_of_stock"
     else
       @current_cart = current_cart
-      if @product.update_attributes(quantity: @product.quantity - params[:quantity].to_i)
+      if @product.update_attributes quantity: @product.quantity - params[:quantity].to_i
         @current_cart.add @product, params[:quantity]
       else
         flash[:danger] = t "error.add_cart_failed"

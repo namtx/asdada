@@ -4,7 +4,7 @@
   </td>
   <td class="w45">
     <p><%= product.name %></p>
-    <i><%= pluralize(product.quantity, "item") %> in stock</i>
+    <i><%= pluralize product.quantity, "item" %> in stock</i>
   </td>
   <td class="w15">
     <p><%= number_to_currency product.price %></p>
@@ -14,13 +14,13 @@
       <div class="col-md-12 col-sm-12">
         <div class="input-group number-spinner">
           <span class="input-group-btn">
-            <button class="btn btn-default" data-dir="down" product = "<%= product.id %>">
+            <button class="btn btn-default" data-dir="down" product="<%= product.id %>">
               <span class="glyphicon glyphicon-minus"></span>
             </button>
           </span>
           <input type="text" class="form-control text-center only-number" value="<%= current_cart.quantity product %>">
           <span class="input-group-btn">
-  					<button class="btn btn-success" data-dir="up" product = "<%= product.id %>">
+  					<button class="btn btn-success" data-dir="up" product="<%= product.id %>">
               <span class="glyphicon glyphicon-plus"></span>
             </button>
   				</span>

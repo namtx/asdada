@@ -1,5 +1,6 @@
 class Admin::CategoriesController < ApplicationController
   before_action :load_category, only: [:show, :update, :destroy]
+  
   def index
     @categories = Category.all
   end

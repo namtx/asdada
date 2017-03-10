@@ -15,7 +15,7 @@
       <div class="row admin-rate-product" product-id="<%= @product.id %>"
         data-score="<%= @product.average_rate %>">
       </div>
-      <i><%= pluralize(@product.rate_count, "review") %></i>
+      <i><%= pluralize @product.rate_count, "review" %></i>
       <p class="description"><%= @product.description %></p>
       <%= render "layouts/facebook_share" %>
       <h3 class="price"><%= number_to_currency @product.price %></h3>

@@ -17,7 +17,7 @@
     include_blank: t("select.select_all") %>
   </div>
   <div class="price-slider">
-    <label><%= t("search_form.price") %></label>
+    <label><%= t "search_form.price" %></label>
     <label><%= number_to_currency Settings.search_form.min_price %></label>
     <div class="slider-wrapper">
       <%= text_field_tag "price", "", id: "price-slider", type: "text",

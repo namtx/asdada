@@ -69,6 +69,10 @@ class Admin::ProductsController < ApplicationController
 
   def load_product
     @product = Product.find_by id: params[:id]
+    unless @product
+      flash[:danger] = t "error.product_not_found"
+      redirect_to admin_products_path
+    end
   end
 
   def get_price_params

@@ -76,6 +76,7 @@ en:
     permission_denied: "Permission denied."
     category_not_found: "Category not found."
     sub_category_not_found: "Sub category not found."
+    user_not_found: "User not found"
   search_form:
     search: "Search"
     all: "All"

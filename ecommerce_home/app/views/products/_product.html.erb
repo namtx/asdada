@@ -7,7 +7,9 @@
         data-score="<%= product.average_rate %>">
       </div>
       <span>( <%= pluralize product.rate_count, "review" %> )</span>
-      <p class="product-price"><%= t "product.price" %><%= number_to_currency product.price %></p>
+      <p class="product-price"><%= t "product.price" %>
+        <%= number_to_currency product.price %>
+      </p>
       <%= hidden_field_tag :product_id, product.id %>
       <%= hidden_field_tag :quantity, Settings.order.quantity_default %>
       <%= submit_tag t("product.buy_now"), class: "btn full-width-button" %>

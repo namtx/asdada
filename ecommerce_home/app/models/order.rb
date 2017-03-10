@@ -37,7 +37,7 @@ class Order < ApplicationRecord
   end
 
   def authenticated? attribute, token
-    digest = send("#{attribute}_digest")
+    digest = send "#{attribute}_digest"
     if digest.nil?
       false
     else
